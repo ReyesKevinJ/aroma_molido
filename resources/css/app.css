@@ -11,7 +11,6 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-sans-C: 'Crimson Text', sans-serif;
     --color-fg-brand-subtle: #F0C9A3;
     --color-fg-brand: #704214;
     --color-fg-brand-strong: #000000;
@@ -22,3 +21,9 @@
     --color-brand-medium: #704214;
     --color-brand-strong: #000000;
 }
+
+.crimson-pro {
+  font-family: "Crimson Pro", serif;
+  font-optical-sizing: auto;
+}
+

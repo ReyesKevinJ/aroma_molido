@@ -1,8 +1,9 @@
-<div class="mx-auto w-full max-w-screen-2xl p-4 py-6 lg:py-8 2xl:px-10">
+<div class="mx-auto bg-brand-soft w-full max-w-screen-2xl p-4 py-6 lg:py-8 xl:px-16">
     <div class="md:flex md:justify-between">
         <div class="mb-6 md:mb-0">
             <a href="/" class="flex items-center">
-                <svg fill="#704214" class="h-10 w-10" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512.329 512.329" xml:space="preserve">
+                <svg fill="#704214" class="h-10 w-10" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512.329 512.329" xml:space="preserve">
                     <g>
                         <g>
                             <g>
@@ -10,7 +11,8 @@
                     C9.716,0,0.165,9.551,0.165,21.333v67.904C0.165,181.339,74.825,256,166.927,256z M213.498,166.763v16.401L73.001,42.667h16.401
                     C157.94,42.667,213.498,98.225,213.498,166.763z M42.831,72.837l140.497,140.497h-16.401
                     c-68.538,0-124.096-55.558-124.096-124.096V72.837z" />
-                                <path d="M490.831,106.667h-25.237c-92.102,0-166.763,74.661-166.763,166.763v25.237c0,11.782,9.551,21.333,21.333,21.333h25.237
+                                <path
+                                    d="M490.831,106.667h-25.237c-92.102,0-166.763,74.661-166.763,166.763v25.237c0,11.782,9.551,21.333,21.333,21.333h25.237
                     c92.102,0,166.763-74.661,166.763-166.763V128C512.165,116.218,502.613,106.667,490.831,106.667z M469.498,153.237
                     c0,68.538-55.558,124.096-124.096,124.096h-3.904v-3.904c0-68.538,55.558-124.096,124.096-124.096h3.904V153.237z" />
                                 <path d="M298.723,350.69c-69.792-69.792-182.946-69.792-252.759-0.003l-31.107,31.107c-12.97,13.03-12.97,34.057-0.034,47.053
@@ -21,7 +23,8 @@
                         </g>
                     </g>
                 </svg>
-                <span class="font-sans-C italic self-center text-xl text-heading font-semibold whitespace-nowrap">AROMA MOLIDO</span>
+                <span class="crimson-pro italic self-center text-xl text-heading font-extrabold whitespace-nowrap">AROMA
+                    MOLIDO</span>
             </a>
         </div>
         <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
