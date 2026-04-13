@@ -54,7 +54,7 @@
                 <h2 class="mb-6 text-sm font-semibold text-heading uppercase">Legal</h2>
                 <ul class="text-body font-medium">
                     <li class="mb-4">
-                        <a href="#" class="hover:underline">Privacy Policy</a>
+                        <a href="{{route('privacy-policy')}}" class="hover:underline">Privacy Policy</a>
                     </li>
                     <li>
                         <a href="#" class="hover:underline">Terms &amp; Conditions</a>
