@@ -16,7 +16,7 @@
 
 <body>
 
-    <head>
+    <head class="my-12">
         @include('components.navbar')
     </head>
     <main>

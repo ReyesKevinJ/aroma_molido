@@ -1,4 +1,4 @@
-<nav class="bg-white fixed w-full z-20 top-0 start-0 border-b border-default">
+<nav class="bg-white sticky w-full z-20 top-0 start-0 border-b border-default">
     <div class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4 xl:px-16">
         <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
             <!-- <svg fill="#704214" class="h-10 w-10" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512.329 512.329" xml:space="preserve">

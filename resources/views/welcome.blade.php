@@ -3,8 +3,8 @@
     <section class="bg-neutral-primary-soft">
         <div class="w-full flex flex-col items-center justify-center my-auto relative h-[80vh]">
             <picture class="w-full absolute inset-0">
-                <source srcset="{{ asset('images/banner_hero.webp') }}" type="image/webp">
-                <img class="img-covert w-full h-full object-cover" src="{{ asset('images/banner_hero.webp') }}"
+                <!-- <source srcset="{{ asset('images/banner_hero.webp') }}" type="image/webp"> -->
+                <img class="img-covert w-full h-full" src="{{ asset('images/banner_hero_2.jpeg') }}"
                     alt="AROMA MOLIDO Logo">
             </picture>
             <div class="relative z-10 text-center">
@@ -28,5 +28,6 @@
             </div>
         </div>
     </section>
+    <x-products />
     @endsection
 </x-layouts.app>
