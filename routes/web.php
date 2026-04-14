@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 Route::get('/contacto', function () {
     return view('contact');
 })->name('contact');
@@ -14,3 +14,9 @@ Route::get('/politica-privacidad', function () {
 Route::get('/terminos-y-condiciones', function () {
     return view('terms-and-conditions');
 })->name('terms-and-conditions');
+Route::get('/nosotros', function () {
+    return view('about');
+})->name('about');
+Route::get('/productos', function () {
+    return view('products');
+})->name('products');

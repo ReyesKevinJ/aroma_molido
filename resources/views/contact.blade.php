@@ -1,29 +1,64 @@
 <x-layouts.app>
-    @section('title','-Contacto')
+    @section('title','- Contacto')
     @section('content')
-    <div class="flex flex-col items-center justify-center h-screen">
-        <h1 class="text-4xl font-bold mb-4">Contact Us</h1>
-        <p class="text-lg text-gray-600">Feel free to reach out to us for any inquiries or support.</p>
-        <form class="mt-6 w-full max-w-md">
-            <div class="mb-4">
-                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                <input type="text" id="name" name="name"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+    <section class="h-full max-w-screen-lg m-auto my-10">
+        <div class="hidden p-4 mb-4 text-sm text-fg-success-strong rounded-base bg-success-soft" id="alert"
+            role="alert">
+            <span class="font-medium">Success alert!</span> Change a few things up and try submitting again.
+        </div>
+        <div class="flex flex-col items-center justify-center">
+            <h1 class="text-4xl font-bold mb-4">Contactanos</h1>
+            <p class="text-lg text-gray-600">No dudes en contactarnos para cualquier consulta o soporte.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-6">
+            <div class="w-full max-w-md">
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+                    <input type="text" id="name" name="name"
+                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand sm:text-sm">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email"
+                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand sm:text-sm">
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-sm font-medium text-gray-700">Mensaje</label>
+                    <textarea id="message" name="message" rows="4"
+                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand sm:text-sm"></textarea>
+                </div>
+                <button type="button" onclick="submit()"
+                    class="inline-flex items-center px-4 py-2 bg-brand-soft border border-transparent rounded-md font-semibold text-white hover:bg-brand focus:outline-none focus:ring-2 focus:ring-offset-2">Enviar
+                    Mensaje</button>
             </div>
-            <div class="mb-4">
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="email" name="email"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <div>
+                <h2 class="text-2xl font-bold mb-4">Nuestra Informacion de Contacto</h2>
+                <p class="text-lg text-gray-600 mb-2">Email:
+                    <a class="text-fg-brand-subtle hover:text-fg-brand hover:border-b transition duration-500"
+                        href="mailto:info@aromamolido.com">info@aromamolido.com</a>
+                </p>
+                <p class="text-lg text-gray-600 mb-2">Phone:
+                    <a class="text-fg-brand-subtle hover:text-fg-brand hover:border-b transition duration-500"
+                        href="tel:+1234567890">+1 (234) 567-890</a>
+                </p>
+                <p class="text-lg text-gray-600 mb-2">Address:
+                    <a class="text-fg-brand-subtle hover:text-fg-brand hover:border-b transition duration-500"
+                        href="https://www.google.com/maps/place/9+de+Julio+1449,+W3400+Corrientes/@-27.4666959,-58.8321683,21z/data=!4m6!3m5!1s0x94456ca6d11ee93d:0x597626256826f00a!8m2!3d-27.4666896!4d-58.8323136!16s%2Fg%2F11flc5zkkd?entry=ttu&g_ep=EgoyMDI2MDQwOC4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank">
+                        9 de Julio 1449, Corrientes, Argentina
+                    </a>
+                </p>
             </div>
-            <div class="mb-4">
-                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                <textarea id="message" name="message" rows="4"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
-            </div>
-            <button type="submit"
-                class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Send
-                Message</button>
-        </form>
-    </div>
+        </div>
+    </section>
+    <script>
+        const alert = document.getElementById('alert');
+        const submit = () => {
+            alert.classList.remove('hidden');
+            setTimeout(() => {
+                alert.classList.add('hidden');
+            }, 2000);
+        }
+    </script>
     @endsection
 </x-layouts.app>

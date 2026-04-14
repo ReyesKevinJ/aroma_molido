@@ -29,7 +29,7 @@
         </div>
         <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
-                <h2 class="mb-6 text-sm font-semibold text-heading uppercase">Resources</h2>
+                <h2 class="mb-6 text-sm font-semibold text-heading uppercase">Productos</h2>
                 <ul class="text-body font-medium">
                     <li class="mb-4">
                         <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
@@ -40,13 +40,14 @@
                 </ul>
             </div>
             <div>
-                <h2 class="mb-6 text-sm font-semibold text-heading uppercase">Follow us</h2>
+                <h2 class="mb-6 text-sm font-semibold text-heading uppercase">Seguinos</h2>
                 <ul class="text-body font-medium">
                     <li class="mb-4">
-                        <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
+                        <a href="https://github.com/ReyesKevinJ/aroma_molido" target="_blank"
+                            class="hover:underline ">Github</a>
                     </li>
                     <li>
-                        <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
+                        <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Instagram</a>
                     </li>
                 </ul>
             </div>
@@ -57,7 +58,7 @@
                         <a href="{{route('privacy-policy')}}" class="hover:underline">Privacy Policy</a>
                     </li>
                     <li>
-                        <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                        <a href="{{route('terms-and-conditions')}}" class="hover:underline">Terms &amp; Conditions</a>
                     </li>
                 </ul>
             </div>

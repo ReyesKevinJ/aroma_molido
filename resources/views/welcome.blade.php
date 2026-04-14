@@ -9,15 +9,15 @@
             </picture>
             <div class="relative z-10 text-center">
                 <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-fg-brand-subtle  md:text-5xl lg:text-6xl">
-                    Welcome to
+                    Bienvenido a
                     <span class="text-white crimson-pro">Aroma Molido</span>
                 </h1>
-                <p class="mb-6 text-lg font-normal text-white lg:text-xl sm:px-16 xl:px-48">Discover the rich and
-                    aromatic world of coffee with us. From the finest beans to expert brewing techniques, we bring you
-                    the ultimate coffee experience.</p>
-                <a href="#"
-                    class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-brand hover:bg-brand-dark focus:ring-4 focus:ring-primary-light">
-                    Get started
+                <p class="mb-6 text-lg font-normal text-white lg:text-xl sm:px-16 xl:px-48">Descubre el mundo rico y
+                    aromático del café con nosotros. Desde las mejores granos hasta las técnicas expertas de
+                    preparación, te ofrecemos la experiencia de café definitiva.</p>
+                <a href="{{ route('products') }}"
+                    class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white rounded-lg bg-brand hover:bg-brand-dark focus:ring-4 focus:ring-primary-light animate-[bounce_2s_infinite]">
+                    Comenzar
                     <svg class="w-5 h-5 ms-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
