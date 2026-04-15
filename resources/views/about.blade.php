@@ -1,20 +1,27 @@
 <x-layouts.app>
     @section('title','- Nosotros')
     @section('content')
-    <section class="h-screen max-w-screen-lg m-auto my-10">
+    <section class="h-auto max-w-screen-lg m-auto my-10">
         <div class="flex flex-col items-center justify-center">
             <h1 class="text-4xl font-bold mb-4">Sobre Nosotros</h1>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                <div>
+                    <p class="text-lg text-gray-600">En Aroma Molido, nos apasiona el café de calidad y la experiencia única que se crea alrededor de cada taza. Fundada en 2020, nuestra tienda nació con el objetivo de acercar a cada hogar una selección exclusiva de granos provenientes de distintas regiones del mundo, cuidadosamente elegidos por su sabor, aroma y proceso de cultivo.</p>
 
-                <p class="text-lg text-gray-600">En Aroma Molido, nos apasiona el café de calidad y la experiencia que
-                    ofrece. Fundada en 2020, nuestra misión es llevar el mejor café a tu hogar, ofreciendo una selección
-                    cuidadosamente curada de granos de todo el mundo. Creemos en la sostenibilidad y trabajamos
-                    directamente
-                    con agricultores para garantizar prácticas justas y responsables. Únete a nosotros en este viaje
-                    aromático y descubre el verdadero sabor del café.</p>
+                    <p class="text-lg text-gray-600">A lo largo del tiempo, fuimos creciendo y perfeccionando nuestra propuesta, enfocándonos exclusivamente en ofrecer café en grano y molido de la más alta calidad. Seleccionamos cuidadosamente cada origen, buscando resaltar los mejores perfiles de sabor y aroma, para que cada persona pueda disfrutar de una experiencia auténtica en cada taza.</p>
+
+                    <p class="text-lg text-gray-600">Nos dirigimos tanto a quienes están dando sus primeros pasos en el mundo del café como a verdaderos apasionados que valoran la calidad en cada preparación. Nuestro compromiso es ofrecer productos confiables, asesoramiento personalizado y una experiencia de compra simple y satisfactoria.</p>
+
+                    <p class="text-lg text-gray-600">Creemos firmemente en la sostenibilidad y en el comercio justo. Por eso, trabajamos directamente con productores y proveedores responsables, asegurando prácticas éticas que respeten tanto al medio ambiente como a las comunidades cafeteras.</p>
+
+                    <p class="text-lg text-gray-600">En Aroma Molido no solo vendemos café, sino que buscamos transmitir una cultura, un momento de pausa y disfrute en la rutina diaria. Queremos acompañarte en cada taza, desde el primer aroma hasta el último sorbo.</p>
+
+                    <p class="text-lg text-gray-600">Nuestra visión es seguir creciendo y consolidarnos como un referente para todos los amantes del café, manteniendo siempre la calidad, la dedicación y la pasión que nos define.</p>
+
+                </div>
 
                 <picture class="justify-end flex">
-                    <img class="h-120 rounded-lg" src="{{asset('images/nosotros.avif')}}" alt="Imagen de Nosotros">
+                    <img class="h-100 rounded-lg" src="{{asset('images/quienes-somos-cafe.jpg')}}" alt="Imagen de Nosotros">
                 </picture>
             </div>
         </div>
