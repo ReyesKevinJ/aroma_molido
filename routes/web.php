@@ -20,3 +20,6 @@ Route::get('/nosotros', function () {
 Route::get('/productos', function () {
     return view('products');
 })->name('products');
+Route::get('/pregunstas-frecuentes', function () {
+    return view('faq');
+})->name('faq');

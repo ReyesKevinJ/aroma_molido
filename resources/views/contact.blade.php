@@ -4,11 +4,11 @@
     <section class="h-full max-w-screen-lg m-auto my-10">
         <div class="hidden p-4 mb-4 text-sm text-fg-success-strong rounded-base bg-success-soft" id="alert"
             role="alert">
-            <span class="font-medium">Mensaje Enviado!</span> Tu mensaje/consulta fue enviada te contactaremos
+            <span class="font-medium">Mensaje Enviado!</span> Tu mensaje/consulta fue enviada, te contactaremos
         </div>
         <div class="flex flex-col items-center justify-center">
             <h1 class="text-4xl font-bold mb-4">Contactanos</h1>
-            <p class="text-lg text-gray-600">No dudes en contactarnos para cualquier consulta o soporte.</p>
+            <p class="text-lg text-gray-600">No dudes en contactarnos para cualquier consulta o soporte. <a href="{{route('faq')}}" class="text-fg-brand-subtle hover:text-fg-brand hover:border-b transition duration-500">Preguntas frecuentes</a></p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-6">
             <div class="w-full max-w-md">
@@ -35,7 +35,10 @@
                 <h2 class="text-2xl font-bold mb-4">Nuestra Informacion de Contacto</h2>
                 <p class="text-lg text-gray-600 mb-2">Titulares:
                     <a class="font-bold  hover:border-b transition duration-500">Ojeda,
-                        Agustin Reyes, Kevin</a>
+                        Agustin y Reyes, Kevin</a>
+                </p>
+                <p class="text-lg text-gray-600 mb-2">Razon Social:
+                    <a class="font-bold  hover:border-b transition duration-500">Aroma Molido S.A.</a>
                 </p>
                 <p class="text-lg text-gray-600 mb-2">Email:
                     <a class="text-fg-brand-subtle hover:text-fg-brand hover:border-b transition duration-500"
@@ -56,13 +59,13 @@
         </div>
     </section>
     <script>
-    const alert = document.getElementById('alert');
-    const submit = () => {
-        alert.classList.remove('hidden');
-        setTimeout(() => {
-            alert.classList.add('hidden');
-        }, 2000);
-    }
+        const alert = document.getElementById('alert');
+        const submit = () => {
+            alert.classList.remove('hidden');
+            setTimeout(() => {
+                alert.classList.add('hidden');
+            }, 3000);
+        }
     </script>
     @endsection
 </x-layouts.app>
