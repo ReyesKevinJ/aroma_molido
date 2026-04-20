@@ -5,12 +5,12 @@
     <section class=" py-12 px-6">
         <div class="max-w-6xl mx-auto text-center">
 
-            <h2 class="text-3xl font-bold text-amber-900 mb-4">
+            <h2 class="text-3xl font-bold  mb-4">
                 Área de Comercialización
             </h2>
-            <p class="text-amber-800 mb-10">
+            <p class=" mb-10">
                 Conocé nuestra forma de trabajo y todos los beneficios de comprar en
-                <span class="font-semibold">Aroma Molido</span>.
+                <span class="text-amber-800 font-semibold">Aroma Molido</span>.
             </p>
 
 
