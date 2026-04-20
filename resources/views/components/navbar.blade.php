@@ -73,13 +73,14 @@
                                     y Usos</a>
                             </li>
                             <li>
-                                <a href="#"
+                                <a href="comercializacion"
                                     class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Comercializacion</a>
                             </li>
                             <li>
                                 <a href="{{route('contact')}}"
                                     class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Contacto</a>
                             </li>
+
                         </ul>
                     </div>
                 </li>

@@ -23,3 +23,6 @@ Route::get('/productos', function () {
 Route::get('/pregunstas-frecuentes', function () {
     return view('faq');
 })->name('faq');
+Route::get('/comercializacion', function () {
+    return view('comercializacion');
+});
