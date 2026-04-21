@@ -26,3 +26,9 @@ Route::get('/pregunstas-frecuentes', function () {
 Route::get('/comercializacion', function () {
     return view('comercializacion');
 });
+Route::get('/inicio-sesion', function () {
+    return view('login');
+})->name('login');
+Route::get('/registro', function () {
+    return view('register');
+})->name('register');
