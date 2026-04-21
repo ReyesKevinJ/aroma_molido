@@ -32,11 +32,9 @@
                 <h2 class="mb-6 text-sm font-semibold text-heading uppercase">Productos</h2>
                 <ul class="text-body font-medium">
                     <li class="mb-4">
-                        <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
+                        <a href="{{route('products')}}" class="hover:underline">Todos los productos</a>
                     </li>
-                    <li>
-                        <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
-                    </li>
+
                 </ul>
             </div>
             <div>
@@ -47,7 +45,8 @@
                             class="hover:underline ">Github</a>
                     </li>
                     <li>
-                        <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Instagram</a>
+                        <a href="https://github.com/ReyesKevinJ/aroma_molido" target="_blank"
+                            class="hover:underline">Instagram</a>
                     </li>
                 </ul>
             </div>
@@ -69,7 +68,7 @@
         <span class="text-sm text-body sm:text-center">© 2026 <a href="/" class="hover:underline">Aroma Molido</a>. All
             Rights Reserved.
         </span>
-        <div class="flex mt-4 sm:justify-center sm:mt-0">
+        <!-- <div class="flex mt-4 sm:justify-center sm:mt-0">
             <a href="#" class="text-body hover:text-heading">
                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     fill="currentColor" viewBox="0 0 24 24">
@@ -105,6 +104,6 @@
                 </svg>
                 <span class="sr-only">Dribbble account</span>
             </a>
-        </div>
+        </div> -->
     </div>
 </div>

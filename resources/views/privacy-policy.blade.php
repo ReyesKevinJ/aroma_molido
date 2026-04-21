@@ -1,6 +1,6 @@
 <x-layouts.app>
     @section('content')
-    <section class="my-16 mx-auto max-w-screen-2xl">
+    <section class="my-8 p-5 md:p-0 mx-auto max-w-screen-md xl:max-w-screen-xl">
         <div class="grid grid-rows-2 place-content-center">
             <h2>
                 <span
