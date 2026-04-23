@@ -47,11 +47,12 @@
                     alt="AROMA MOLIDO Logo">
             </picture>
             <div class="relative z-10 text-center">
-                <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-fg-brand-subtle  md:text-5xl lg:text-6xl">
+                <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-fg-brand-subtle  md:text-5xl ">
                     Bienvenido a
                     <span class="text-white crimson-pro">Aroma Molido</span>
                 </h1>
-                <p class="mb-6 text-lg font-normal text-white lg:text-xl sm:px-16 xl:px-48">Descubre el mundo rico y
+                <p class="mb-6 text-lg font-normal text-white xl:px-10 lg:text-xl sm:px-16 xl:px-90">Descubre el mundo
+                    rico y
                     aromático del café con nosotros. Desde las mejores granos hasta las técnicas expertas de
                     preparación, te ofrecemos la experiencia de café definitiva.</p>
                 <a href="{{ route('products') }}"

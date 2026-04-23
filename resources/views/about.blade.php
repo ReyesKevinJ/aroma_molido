@@ -3,7 +3,7 @@
     @section('content')
     <section class="h-auto p-5 md:p-0 max-w-screen-lg m-auto my-10">
         <div class="flex flex-col ">
-            <h1 class="text-4xl font-bold mb-4">Nuestra Historia</h1>
+            <h1 class="text-4xl font-bold mb-4 crimson-pro">Nuestra Historia</h1>
             <div class="my-6">
 
                 <picture class="h-48 w-96 object-cover ">
