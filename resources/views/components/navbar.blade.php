@@ -63,7 +63,7 @@
                 </li>
                 <li>
                     <button id="dropdownNvbarButton2" data-dropdown-toggle="dropdownNavbar2"
-                        class="flex items-center py-2 px-3 rounded md:p-0 {{ request()->routeIs(['contact','privacy-policy','terms-and-conditions','comercializacion']) ? 'text-white bg-brand md:bg-transparent md:text-fg-brand' : 'text-heading hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:dark:hover:bg-transparent' }}">
+                        class="hidden md:flex items-center py-2 px-3 rounded md:p-0 {{ request()->routeIs(['contact','privacy-policy','terms-and-conditions','comercializacion']) ? 'text-white bg-brand md:bg-transparent md:text-fg-brand' : 'text-heading hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:dark:hover:bg-transparent' }}">
                         Informacion
                         <svg class="w-4 h-4 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                             height="24" fill="none" viewBox="0 0 24 24">
@@ -96,7 +96,7 @@
                         data-active-classes="bg-neutral-primary text-body" data-inactive-classes="text-body">
                         <h2 id="accordion-arrow-heading-1">
                             <button type="button"
-                                class="flex items-center justify-between w-full py-2 px-3 rounded font-medium text-heading md:hidden"
+                                class="flex items-center justify-between w-full py-2 px-3 rounded font-medium text-heading md:hidden "
                                 data-accordion-target="#accordion-arrow-body-1" aria-expanded="false"
                                 aria-controls="accordion-arrow-body-1">
                                 <span>Informacion</span>
