@@ -14,7 +14,7 @@
                     frecuentes</a></p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-6">
-            <form class="w-full max-w-md" action="{{route('contact')}}">
+            <form id="login-form" class="w-full max-w-md" action="#">
                 <div class="mb-4">
                     <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
                     <input type="text" id="name" name="name"
@@ -33,7 +33,7 @@
                         class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand sm:text-sm"
                         required></textarea>
                 </div>
-                <button type="buttom" onclick="submit()"
+                <button type="submit"
                     class="inline-flex items-center px-4 py-2 bg-brand-soft border border-transparent rounded-md font-semibold text-white hover:bg-brand focus:outline-none focus:ring-2 focus:ring-offset-2">Enviar
                     Mensaje</button>
             </form>
@@ -66,12 +66,20 @@
     </section>
     <script>
         const alert = document.getElementById('alert');
-        const submit = () => {
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            // 1. Detenemos el comportamiento por defecto (recargar/enviar)
+            event.preventDefault();
+
+            // 2. Mostramos el mensaje de éxito
+            console.log('Mensaje enviado');
             alert.classList.remove('hidden');
             setTimeout(() => {
                 alert.classList.add('hidden');
+                console.clear();
             }, 3000);
-        }
+            // 3. (Opcional) Limpiamos el formulario para simular que se envió
+            this.reset();
+        });
     </script>
     @endsection
 </x-layouts.app>

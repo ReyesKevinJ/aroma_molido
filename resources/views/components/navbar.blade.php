@@ -42,20 +42,28 @@
                 class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-neutral-primary">
                 <li>
                     <a href="{{route('welcome')}}"
-                        class="block py-2 px-3 text-white bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0"
-                        aria-current="page">Inicio</a>
+                        class="block py-2 px-3 rounded md:p-0 {{ request()->routeIs('welcome') ? 'text-white bg-brand md:bg-transparent md:text-fg-brand' : 'text-heading hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:dark:hover:bg-transparent' }}"
+                        {{ request()->routeIs('welcome') ? 'aria-current="page"' : '' }}>
+                        Principal
+                    </a>
                 </li>
                 <li>
                     <a href="{{route('products')}}"
-                        class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Productos</a>
+                        class="block py-2 px-3 rounded md:p-0 {{ request()->routeIs('products') ? 'text-white bg-brand md:bg-transparent md:text-fg-brand' : 'text-heading hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:dark:hover:bg-transparent' }}"
+                        {{ request()->routeIs('products') ? 'aria-current="page"' : '' }}>
+                        Catalogo Productos
+                    </a>
                 </li>
                 <li>
                     <a href="{{route('about')}}"
-                        class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Nosotros</a>
+                        class="block py-2 px-3 rounded md:p-0 {{ request()->routeIs('about') ? 'text-white bg-brand md:bg-transparent md:text-fg-brand' : 'text-heading hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:dark:hover:bg-transparent' }}"
+                        {{ request()->routeIs('about') ? 'aria-current="page"' : '' }}>
+                        Quienes Somos
+                    </a>
                 </li>
                 <li>
                     <button id="dropdownNvbarButton2" data-dropdown-toggle="dropdownNavbar2"
-                        class="flex items-center justify-between w-full py-2 px-3 rounded font-medium text-heading md:w-auto hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0">
+                        class="hidden md:flex items-center py-2 px-3 rounded md:p-0 {{ request()->routeIs(['contact','privacy-policy','terms-and-conditions','comercializacion']) ? 'text-white bg-brand md:bg-transparent md:text-fg-brand' : 'text-heading hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:dark:hover:bg-transparent' }}">
                         Informacion
                         <svg class="w-4 h-4 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                             height="24" fill="none" viewBox="0 0 24 24">
@@ -83,6 +91,40 @@
 
                         </ul>
                     </div>
+
+                    <div id="accordion-arrow" data-accordion="collapse"
+                        data-active-classes="bg-neutral-primary text-body" data-inactive-classes="text-body">
+                        <h2 id="accordion-arrow-heading-1">
+                            <button type="button"
+                                class="flex items-center justify-between w-full py-2 px-3 rounded font-medium text-heading md:hidden "
+                                data-accordion-target="#accordion-arrow-body-1" aria-expanded="false"
+                                aria-controls="accordion-arrow-body-1">
+                                <span>Informacion</span>
+                                <svg data-accordion-icon class="w-5 h-5 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7" />
+                                </svg>
+                            </button>
+                        </h2>
+                        <div id="accordion-arrow-body-1" class="hidden" aria-labelledby="accordion-arrow-heading-1">
+                            <ul class="p-2 text-sm text-body ">
+                                <li>
+                                    <a href="{{route('terms-and-conditions')}}"
+                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Terminos
+                                        y Usos</a>
+                                </li>
+                                <li>
+                                    <a href="comercializacion"
+                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Comercializacion</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('contact')}}"
+                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Contacto</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
                 </li>
                 <li class="md:hidden">
                     <a href="/"
@@ -90,7 +132,7 @@
                 </li>
                 <li class="md:hidden">
                     <button id="dropdownNvbarButton1" data-dropdown-toggle="dropdownNavbar1"
-                        class="flex items-center justify-between w-full py-2 px-3 rounded font-medium text-heading md:w-auto hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0">
+                        class="hidden md:flex items-center justify-between w-full py-2 px-3 rounded font-medium text-heading md:w-auto hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0">
                         Usuario
                         <svg class="w-4 h-4 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                             height="24" fill="none" viewBox="0 0 24 24">
@@ -121,6 +163,35 @@
                                     out</a>
                             </li> -->
                         </ul>
+                    </div>
+
+                    <div id="accordion-arrow-1" data-accordion="collapse"
+                        data-active-classes="bg-neutral-primary text-body" data-inactive-classes="text-body">
+                        <h2 id="accordion-arrow-1-heading-1">
+                            <button type="button"
+                                class="flex items-center justify-between w-full py-2 px-3 rounded font-medium text-heading md:hidden"
+                                data-accordion-target="#accordion-arrow-1-body-1" aria-expanded="false"
+                                aria-controls="accordion-arrow-1-body-1">
+                                <span>Usuario</span>
+                                <svg data-accordion-icon class="w-5 h-5 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7" />
+                                </svg>
+                            </button>
+                        </h2>
+                        <div id="accordion-arrow-1-body-1" class="hidden" aria-labelledby="accordion-arrow-1-heading-1">
+                            <ul class="p-2 text-sm text-body ">
+                                <li>
+                                    <a href="{{route('login')}}"
+                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Iniciar
+                                        Sesion</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('register')}}"
+                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Registrarse</a>
+                                </li>
+
+                            </ul>
+                        </div>
                     </div>
                 </li>
             </ul>

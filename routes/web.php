@@ -25,7 +25,7 @@ Route::get('/pregunstas-frecuentes', function () {
 })->name('faq');
 Route::get('/comercializacion', function () {
     return view('comercializacion');
-});
+})->name('comercializacion');
 Route::get('/inicio-sesion', function () {
     return view('login');
 })->name('login');
