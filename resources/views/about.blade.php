@@ -75,7 +75,35 @@
                 </li>
 
             </ul>
+        
+
+            <h2 class="text-3xl font-bold mt-10">Integrantes</h2>
+            <div class="flex flex-wrap justify-center gap-12 py-10">
+                
+
+                @php
+                    $equipo = [
+                        ['nombre' => 'Reyes, Kevin', 'rol' => 'Fundador / Estrategia', 'url' => 'https://cloudfront-us-east-1.images.arcpublishing.com/elcronista/6DK5ZD7R3VC37LO3IHBVORZ7YQ.jpg'],
+                        ['nombre' => 'Ojeda, Agustin', 'rol' => 'Fundador / Creatividad', 'url' => 'https://img.freepik.com/fotos-premium/joven-dueno-cafeteria-brazos-cruzados_116407-32855.jpg'],
+                        ['nombre' => 'Ríos, Lucas', 'rol' => 'Barista', 'url' => 'https://img.freepik.com/fotos-premium/retrato-cafetero-barista-brazos-cruzados-listos-tomar-su-pedido-camarero-cafeteria-seguro-si-mismo-feliz-orgulloso-joven-empleado-brasil-o-propietario-pequena-empresa-cafeteria_590464-138303.jpg?w=360'],
+                    ];
+                @endphp
+
+                @foreach($equipo as $persona)
+                <div class="flex flex-col items-center group">
+                    <div class="relative">
+                        <div class="absolute -inset-1 bg-amber-600 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
+                        <img src="{{ $persona['url'] }}" 
+                            alt="{{ $persona['nombre'] }}" 
+                            class="relative w-40 h-40 object-cover rounded-full border-4 border-white shadow-lg transform transition duration-500 group-hover:scale-105">
+                    </div>
+                    <h3 class="mt-6 text-xl font-bold text-stone-800">{{ $persona['nombre'] }}</h3>
+                    <p class="text-amber-700 font-medium tracking-wide uppercase text-xs">{{ $persona['rol'] }}</p>
+                </div>
+                @endforeach
+            </div>
         </div>
+
     </section>
     @endsection
 </x-layouts.app>
