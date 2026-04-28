@@ -100,8 +100,11 @@
                                 data-accordion-target="#accordion-arrow-body-1" aria-expanded="false"
                                 aria-controls="accordion-arrow-body-1">
                                 <span>Informacion</span>
-                                <svg data-accordion-icon class="w-5 h-5 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7" />
+                                <svg data-accordion-icon class="w-5 h-5 rotate-180 shrink-0" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m5 15 7-7 7 7" />
                                 </svg>
                             </button>
                         </h2>
@@ -126,10 +129,10 @@
                     </div>
 
                 </li>
-                <li class="md:hidden">
+                <!-- <li class="md:hidden">
                     <a href="/"
                         class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Carrito</a>
-                </li>
+                </li> -->
                 <li class="md:hidden">
                     <button id="dropdownNvbarButton1" data-dropdown-toggle="dropdownNavbar1"
                         class="hidden md:flex items-center justify-between w-full py-2 px-3 rounded font-medium text-heading md:w-auto hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0">
@@ -173,8 +176,11 @@
                                 data-accordion-target="#accordion-arrow-1-body-1" aria-expanded="false"
                                 aria-controls="accordion-arrow-1-body-1">
                                 <span>Usuario</span>
-                                <svg data-accordion-icon class="w-5 h-5 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7" />
+                                <svg data-accordion-icon class="w-5 h-5 rotate-180 shrink-0" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m5 15 7-7 7 7" />
                                 </svg>
                             </button>
                         </h2>
