@@ -9,7 +9,7 @@
                 Términos y Condiciones - Aroma Molido S.A.
             </h2>
             <p class="px-4 pb-6 text-stone-700">
-                Bienvenido a **Aroma Molido S.A.** Al acceder y utilizar nuestro sitio web, aceptás los siguientes términos y
+                Bienvenido a <span class="font-semibold text-[#5A3A1B]">**Aroma Molido S.A.** </span>Al acceder y utilizar nuestro sitio web, aceptás los siguientes términos y
                 condiciones que rigen nuestra relación comercial. Te recomendamos leerlos atentamente para conocer tus derechos y obligaciones antes de realizar una compra.
             </p>
 
