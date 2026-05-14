@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('id_user')->constrained('user')->onDelete('cascade');
             $table->string('subject');
             $table->longText('message');
-            $table->boolean('status')->default(false);
+            $table->boolean('state')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

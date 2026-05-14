@@ -11,7 +11,7 @@ class Query extends Model
         'id_user',
         'subject',
         'message',
-        'status',
+        'state',
     ];
 
 
