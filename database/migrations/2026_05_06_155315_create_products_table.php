@@ -18,6 +18,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->boolean('is_available')->default(true);
             $table->decimal('price', 8, 2);
+            $table->integer('stock')->default(0);
+            $table->foreignId('weight_id')->constrained()->onDelete('cascade');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

@@ -14,8 +14,14 @@ class Query extends Model
         'state',
     ];
 
+    //relationships
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 
-    public function getEstadoTextoAttribute()
+
+    public function getStatusTextAttribute()
     {
         return $this->state ? 'Leído' : 'No leído';
     }
