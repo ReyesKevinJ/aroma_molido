@@ -12,15 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('contact', function (Blueprint $table) {
-             $table->id();
-            $table->string('nombre');
+            $table->id();
+            $table->string('name');
             $table->string('email');
-            $table->string('telefono');
-            $table->string('asunto');
-            $table->string('mensaje');
+            $table->string('phone')->nullable();
+            $table->string('subject');
+            $table->string('message');
             // false = no leído | true = leído
-            $table->boolean('estado')->default(false);
-            // created_at 
+            $table->boolean('status')->default(false);
+            $table->softDeletes();
+            // created_at
             $table->timestamps();
         });
     }

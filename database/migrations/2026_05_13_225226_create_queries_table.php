@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('query', function (Blueprint $table) {
             $table->id();
-            $table->foreignId (id_usuario)->constrained('user');
-            $table->mediumText('asunto');
-            $table->longText('mensaje');
-            // false = no leído | true = leído
-            $table->boolean('state')->default(false);
-            // created_at y updated_at
+            $table->foreignId('id_user')->constrained('user')->onDelete('cascade');
+            $table->string('subject');
+            $table->longText('message');
+            $table->boolean('status')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
