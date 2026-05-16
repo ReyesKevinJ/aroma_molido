@@ -9,24 +9,24 @@ class OrderItem extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'id_order',
-        'id_product',
+        'order_id',
+        'product_id',
         'quantity',
         'price',
     ];
 
     public function order()
     {
-        return $this->belongsTo(Order::class, 'id_order');
+        return $this->belongsTo(Order::class, 'order_id');
     }
 
     public function product()
     {
-        return $this->belongsTo(Product::class, 'id_product');
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
     public function priceFormat()
     {
-        return number_format($this->price, 2, ',', '.');
+        return "$" . number_format($this->price, 2, ',', '.');
     }
 }

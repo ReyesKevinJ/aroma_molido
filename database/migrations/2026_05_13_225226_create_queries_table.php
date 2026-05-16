@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('query', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_user')->constrained('user')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('subject');
             $table->longText('message');
             $table->boolean('state')->default(false);

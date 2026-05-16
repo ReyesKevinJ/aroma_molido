@@ -8,7 +8,7 @@ class Query extends Model
 {
 
     protected $fillable = [
-        'id_user',
+        'user_id',
         'subject',
         'message',
         'state',
@@ -17,7 +17,7 @@ class Query extends Model
     //relationships
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 

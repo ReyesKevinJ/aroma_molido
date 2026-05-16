@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\WeightController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,3 +33,5 @@ Route::get('/inicio-sesion', function () {
 Route::get('/registro', function () {
     return view('register');
 })->name('register');
+
+Route::resource('pesos', WeightController::class)->names('admin.weights');

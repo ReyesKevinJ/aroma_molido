@@ -9,7 +9,7 @@ class Order extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'id_user',
+        'user_id',
         'total_amount',
         'status',
         'payment_method',
@@ -26,7 +26,7 @@ class Order extends Model
     //relationships
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function items()
@@ -36,12 +36,12 @@ class Order extends Model
 
     public function totalAmountFormat()
     {
-        return number_format($this->total_amount, 2, ',', '.');
+        return "$" . number_format($this->total_amount, 2, ',', '.');
     }
 
     public function shippingCostFormat()
     {
-        return number_format($this->shipping_cost, 2, ',', '.');
+        return "$" . number_format($this->shipping_cost, 2, ',', '.');
     }
 
     public function shippedAtFormat()
