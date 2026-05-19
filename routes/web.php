@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\WeightController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,11 +30,31 @@ Route::get('/pregunstas-frecuentes', function () {
 Route::get('/comercializacion', function () {
     return view('comercializacion');
 })->name('comercializacion');
-Route::get('/inicio-sesion', function () {
-    return view('login');
-})->name('login');
-Route::get('/registro', function () {
-    return view('register');
-})->name('register');
+
+// Route::get('/inicio-sesion', function () {
+//     return view('login');
+// })->name('login');
+Route::get('/inicio-sesion', [AuthController::class, 'formularioLogin'])->name('login');
+Route::post('/inicio-sesion', [AuthController::class, 'autenticar']);
+
+
+// Route::get('/registro', function () {
+//     return view('register');
+// })->name('register');
+Route::get('/registro', [AuthController::class, 'formularioRegistro'])->name('register');
+Route::post('/registro', [AuthController::class, 'register']);
+
+Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/admin', [AdminController::class, 'dashboard']);
+});
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/cliente', [ClienteController::class, 'client']);
+
+});
 
 Route::resource('pesos', WeightController::class)->names('admin.weights');
