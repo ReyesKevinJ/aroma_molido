@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\WeightController;
+
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ClienteController;
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -45,16 +43,3 @@ Route::get('/registro', [AuthController::class, 'formularioRegistro'])->name('re
 Route::post('/registro', [AuthController::class, 'register']);
 
 Route::post('/logout', [AuthController::class, 'logout']);
-
-Route::middleware(['auth', 'admin'])->group(function () {
-
-    Route::get('/admin', [AdminController::class, 'dashboard']);
-});
-
-Route::middleware(['auth'])->group(function () {
-
-    Route::get('/cliente', [ClienteController::class, 'client']);
-
-});
-
-Route::resource('pesos', WeightController::class)->names('admin.weights');

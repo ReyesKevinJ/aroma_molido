@@ -1,28 +1,31 @@
 <?php
 
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-public function autenticar(Request $request)
+class Login extends Model
 {
-    $credenciales = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required'
-    ]);
-
-    if(Auth::attempt($credenciales))
+    public function autenticar(Request $request)
     {
-        $request->session()->regenerate();
+        $credenciales = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
-        if(Auth::user()->role === 'admin')
-        {
-            return redirect('/admin');
+        if (Auth::attempt($credenciales)) {
+            $request->session()->regenerate();
+
+            if (Auth::user()->role === 'admin') {
+                return redirect('/admin');
+            }
+
+            return redirect('/cliente');
         }
 
-        return redirect('/cliente');
+        return back()->withErrors([
+            'email' => 'Email o contraseña incorrectos'
+        ]);
     }
-
-    return back()->withErrors([
-        'email' => 'Email o contraseña incorrectos'
-    ]);
 }

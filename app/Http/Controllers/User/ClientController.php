@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-     public function cliente()
+    public function client()
     {
-        return view('backend.usuarios.client');
+        return view('backend.user.client');
     }
 }
