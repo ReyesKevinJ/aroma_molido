@@ -2,21 +2,26 @@
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
-public function registrar(Request $request)
+class Register extends Model
 {
-    $datos = $request->validate([
-        'name' => 'required',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:4'
-    ]);
+    public function registrar(Request $request)
+    {
+        $datos = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:4'
+        ]);
 
-    User::create([
-        'name' => $datos['name'],
-        'email' => $datos['email'],
-        'password' => Hash::make($datos['password']), //Encripta la contraseña.
-        'role' => 'cliente'
-    ]);
+        User::create([
+            'name' => $datos['name'],
+            'email' => $datos['email'],
+            'password' => Hash::make($datos['password']), //Encripta la contraseña.
+            'role' => 'cliente'
+        ]);
 
-    return redirect('/login');
+        return redirect('/login');
+    }
 }
