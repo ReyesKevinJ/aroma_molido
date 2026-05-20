@@ -33,13 +33,13 @@ Route::get('/comercializacion', function () {
 //     return view('login');
 // })->name('login');
 Route::get('/inicio-sesion', [AuthController::class, 'formularioLogin'])->name('login');
-Route::post('/inicio-sesion', [AuthController::class, 'autenticar']);
+Route::post('/inicio-sesion', [AuthController::class, 'autenticar'])->name('login.submit');
 
 
 // Route::get('/registro', function () {
 //     return view('register');
 // })->name('register');
 Route::get('/registro', [AuthController::class, 'formularioRegistro'])->name('register');
-Route::post('/registro', [AuthController::class, 'register']);
+Route::post('/registro', [AuthController::class, 'register'])->name('register.submit');
 
-Route::post('/logout', [AuthController::class, 'logout']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

@@ -8,17 +8,18 @@
                 <h1 class="text-xl font-bold leading-tight tracking-tight md:text-2xl ">
                     Iniciar sesión
                 </h1>
-                <form class="max-w-sm mx-auto" action="{{route('welcome')}}">
+                <form class="max-w-sm mx-auto" action="{{route('login.submit')}}" method="POST">
+                    @csrf
                     <div class="mb-5">
                         <label for="email" class="block mb-2.5 text-sm font-medium text-heading">Tu email</label>
-                        <input type="email" id="email"
+                        <input type="email" name="email" id="email"
                             class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
                             placeholder="name@flowbite.com" required />
                     </div>
                     <div class="mb-5">
                         <label for="password" class="block mb-2.5 text-sm font-medium text-heading">Tu
                             contraseña</label>
-                        <input type="password" id="password"
+                        <input name="password" type="password" id="password"
                             class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
                             placeholder="••••••••" required />
                     </div>

@@ -21,7 +21,7 @@ class Login extends Model
                 return redirect('/admin');
             }
 
-            return redirect('/cliente');
+            return redirect()->route('welcome');
         }
 
         return back()->withErrors([

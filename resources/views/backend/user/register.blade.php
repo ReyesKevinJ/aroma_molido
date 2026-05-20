@@ -8,7 +8,8 @@
                 <h1 class="text-xl font-bold leading-tight tracking-tight md:text-2xl ">
                     Crear una cuenta
                 </h1>
-                <form class="space-y-4 md:space-y-6" action="{{route('welcome')}}">
+                <form class="space-y-4 md:space-y-6" action="{{route('register.submit')}}" method="POST">
+                    @csrf
                     <div>
                         <label for="email" class="block mb-2 text-sm font-medium ">Tu email</label>
                         <input type="email" name="email" id="email"
