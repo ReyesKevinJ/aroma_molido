@@ -8,20 +8,31 @@
                 <h1 class="text-xl font-bold leading-tight tracking-tight md:text-2xl ">
                     Iniciar sesión
                 </h1>
-                <form class="max-w-sm mx-auto" action="{{route('login.submit')}}" method="POST">
+                <form class="max-w-sm mx-auto" action="{{route('login.submit')}}" autocomplete="off" method="POST">
                     @csrf
+                    <input type="text" name="fake_user" style="display:none">
+                    <input type="password" name="fake_pass" style="display:none">
                     <div class="mb-5">
                         <label for="email" class="block mb-2.5 text-sm font-medium text-heading">Tu email</label>
                         <input type="email" name="email" id="email"
                             class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
                             placeholder="name@flowbite.com" required />
+                        @error('email')
+                        <p>{{ $message }}</p>
+                        @enderror
+
+
+
                     </div>
                     <div class="mb-5">
                         <label for="password" class="block mb-2.5 text-sm font-medium text-heading">Tu
                             contraseña</label>
                         <input name="password" type="password" id="password"
                             class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                            placeholder="••••••••" required />
+                            placeholder="••••••••" autocomplete="new-password" required />
+                        @error('password')
+                        <p>{{ $message }}</p>
+                        @enderror
                     </div>
                     <button type="submit"
                         class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Enviar</button>
@@ -30,7 +41,6 @@
                             class=" font-medium text-fg-brand hover:underline dark:text-primary-500 "> Regístrate </ a>
                     </p>
                 </form>
-
 
             </div>
         </div>

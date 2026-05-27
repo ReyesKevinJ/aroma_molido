@@ -43,20 +43,26 @@ class AuthController extends Controller
 
     public function autenticar(Request $request)
     {
-        // Validar los datos del formulario
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
-        // Intentar autenticar al usuario
-        if (Auth::attempt($request->only('email', 'password'))) {
-            // Si la autenticación es exitosa, redirigir al usuario a la página de inicio o a donde desees
+
+        if (Auth::attempt($credentials)) {
+
+
+            $request->session()->regenerate();
+
+            if (Auth::user()->role === 'admin') {
+                return redirect()->route('welcome');
+            }
+
             return redirect()->route('welcome');
         }
 
-        // Si la autenticación falla, redirigir de vuelta al formulario de login con un mensaje de error
         return back()->withErrors([
             'email' => 'Las credenciales proporcionadas no son correctas.',
-        ])->withInput();
+            'password' => 'La contraseña es incorrecta.',
+        ])->onlyInput('email');
     }
 }

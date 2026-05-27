@@ -203,7 +203,10 @@
             </ul>
         </div>
         <div class=" gap-4 hidden md:flex">
-            <!-- <button id="dropdownNvbarButton" data-dropdown-toggle="dropdownNavbar"
+            @auth
+
+
+            <button id="dropdownNvbarButton" data-dropdown-toggle="dropdownNavbar"
                 class="flex items-center justify-between w-full py-2 px-3 rounded font-medium text-heading md:w-auto hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="size-6">
@@ -214,10 +217,13 @@
             <div id="dropdownNavbar"
                 class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44">
                 <ul class="p-2 text-sm text-body font-medium" aria-labelledby="dropdownNvbarButton">
+                    @can('admin')
+
                     <li>
                         <a href="#"
                             class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Dashboard</a>
                     </li>
+                    @endcan
                     <li>
                         <a href="#"
                             class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Settings</a>
@@ -232,12 +238,16 @@
                             out</a>
                     </li>
                 </ul>
-            </div> -->
+            </div>
+            @endauth
+            @guest
+
             <a href="{{ route('register') }}"
                 class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Registrarse</a>
             <a href="{{route('login')}}"
                 class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Iniciar
                 Sesion</a>
+            @endguest
             <button class="" data-modal-target="default-modal-cart" data-modal-toggle="default-modal-cart">
 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
