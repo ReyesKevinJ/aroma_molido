@@ -1,3 +1,18 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ config('app.name') }} @yield('title')</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    @vite(['resources/css/app.css','resources/js/app.js'])
+
+</head>
+
 <div class="bg-red-900 h-screen w-screen">
-    h
+    <div class="flex items-center justify-center h-full">
+        <h1 class="text-6xl font-bold text-white">404</h1>
+    </div>
 </div>

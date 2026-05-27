@@ -220,7 +220,7 @@
                     @can('admin')
 
                     <li>
-                        <a href="#"
+                        <a href="{{ route('admin.dashboard') }}"
                             class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Dashboard</a>
                     </li>
                     @endcan
@@ -233,9 +233,13 @@
                             class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Earnings</a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Sign
-                            out</a>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit"
+                                class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">
+                                Sign
+                                out</button>
+                        </form>
                     </li>
                 </ul>
             </div>
