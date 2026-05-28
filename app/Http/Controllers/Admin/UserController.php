@@ -10,8 +10,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all()->makeHidden(['password']);
-        dd($users->first()->password);
+        $users = User::all();
+        $users = $users->toArray();
         return view('admin.users.index', compact('users'));
     }
 
@@ -37,8 +37,25 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
     }
 
-    public function edit(User $user)
+    public function edit(String $id)
     {
-        return view('admin.users.edit', compact($user));
+        $user = User::findOrFail($id);
+        return view('admin.users.edit', compact('user'));
+    }
+
+    public function update(Request $request, String $id)
+    {
+        $user = User::findOrFail($id);
+        $validator = $request->validate([
+            'role' => 'required|in:admin,customer',
+        ]);
+        if (!$validator) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $user->update([
+            'role' => $request->role,
+        ]);
+
+        return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
     }
 }
