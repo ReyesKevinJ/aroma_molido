@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::resource('pesos', WeightController::class)->names('weights');
+Route::put('pesos/{peso}/restore', [WeightController::class, 'restore'])->name('weights.restore');
 Route::resource('categorias', CategoryController::class)->names('categories');
 Route::resource('productos', ProductController::class)->names('products');
 Route::resource('imagenes', ImageController::class)->names('images');

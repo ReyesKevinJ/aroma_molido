@@ -1,4 +1,5 @@
-<x-layouts.app title="Registrar peso">
+<x-layouts.admin>
+    @section('title', 'Registrar peso')
     @section('content')
 
     <div class="container mt-5">
@@ -8,9 +9,12 @@
             <div class="mb-3">
                 <label for="name" class="form-label">Peso (g)</label>
                 <input type="text" name="name" id="name" class="form-control" id="weight" name="weight" required>
+                @error('name')
+                <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
     </div>
     @endsection
-</x-layouts.app>
+</x-layouts.admin>

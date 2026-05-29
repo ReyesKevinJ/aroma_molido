@@ -10,7 +10,7 @@ class WeightController extends Controller
 {
     public function index()
     {
-        $weights = Weight::all();
+        $weights = Weight::withTrashed()->get();
         return view('admin.weights.index', compact('weights'));
     }
 
@@ -21,10 +21,12 @@ class WeightController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|unique:weights,name',
+        $validator = $request->validate([
+            'name' => 'required|string|unique:weights,name',
         ]);
-
+        if (!$validator) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
         Weight::create($request->all());
 
         return redirect()->route('admin.weights.index')->with('success', 'Peso creado exitosamente.');
@@ -46,9 +48,17 @@ class WeightController extends Controller
         return redirect()->route('admin.weights.index')->with('success', 'Peso actualizado exitosamente.');
     }
 
-    public function destroy(Weight $weight)
+    public function destroy(String $id)
     {
+        $weight = Weight::findOrFail($id);
         $weight->delete();
         return redirect()->route('admin.weights.index')->with('success', 'Peso eliminado exitosamente.');
+    }
+
+    public function restore(String $id)
+    {
+        $weight = Weight::withTrashed()->findOrFail($id);
+        $weight->restore();
+        return redirect()->route('admin.weights.index')->with('success', 'Peso restaurado exitosamente.');
     }
 }
