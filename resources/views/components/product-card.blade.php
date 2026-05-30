@@ -1,6 +1,5 @@
 <div>
-    <div
-        class="bg-white border border-default-medium rounded-base shadow-md hover:shadow-lg hover:scale-105 transition duration-300 relative">
+    <div class="bg-white border border-default-medium rounded-base shadow-md hover:shadow-lg hover:scale-105 transition duration-300 relative">
         <span class="absolute top-3 right-3 bg-brand px-2 rounded-full text-white text-sm">${{$price}}</span>
         <img class="rounded-t-base" src="{{ $image }}" alt="{{ $title }} image">
         <div class="p-5">
@@ -16,13 +15,17 @@
                     </svg>
                     ver mas
                 </button>
-                <button class="bg-brand-soft rounded-xl p-2" data-modal-target="default-modal-cart"
-                    data-modal-toggle="default-modal-cart">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                    </svg>
+
+                <button
+                    onclick='agregarAlCarrito(
+                        @json($id),
+                        @json($title),
+                        @json($price),
+                        @json($image)
+                    )'
+
+                    class="bg-brand-soft rounded-xl px-4 py-2">
+                    Comprar
                 </button>
             </div>
         </div>
@@ -62,8 +65,18 @@
             </div>
             <!-- Modal footer -->
             <div class="flex items-center border-t border-default space-x-4 pt-4 md:pt-5">
-                <button data-modal-hide="default-modal-{{$id}}" type="button"
-                    class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Comprar</button>
+                <button
+                    onclick='agregarAlCarrito(
+                        @json($id),
+                        @json($title),
+                        @json($price),
+                        @json($image)
+                    )'
+
+                    class="bg-brand-soft rounded-xl px-4 py-2">
+                    Comprar
+                </button>
+
                 <button data-modal-hide="default-modal-{{$id}}" type="button"
                     class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Seguir
                     Viendo</button>
