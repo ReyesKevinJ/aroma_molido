@@ -89,6 +89,8 @@ function renderizarCarrito() {
 
     contenedor.innerHTML = '';
 
+
+
     let total = 0;
 
     carrito.forEach(producto => {
@@ -160,6 +162,23 @@ function renderizarCarrito() {
             $${total.toFixed(2)}
         `;
     }
+
+
+}
+
+window.irAPagar = function (){
+
+    if (carrito.length === 0) {
+        alert("El carrito está vacío");
+        return;
+    }
+
+    localStorage.setItem(
+        'checkout',
+        JSON.stringify(carrito)
+    );
+
+    window.location.href = '/metodo-pagos';
 }
 
 document.addEventListener(

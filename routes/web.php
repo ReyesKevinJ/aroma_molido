@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -43,3 +44,15 @@ Route::get('/registro', [AuthController::class, 'formularioRegistro'])->name('re
 Route::post('/registro', [AuthController::class, 'register'])->name('register.submit');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+//metodo de pagos
+Route::get('/metodo-pagos', function () {
+    return view('payment-method');
+})->name('payment.method');
+
+
+
+Route::post('/orders', [OrderController::class, 'store'])
+    ->middleware('auth')
+    ->name('orders.store');
