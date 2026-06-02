@@ -49,10 +49,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 //metodo de pagos
 Route::get('/metodo-pagos', function () {
     return view('payment-method');
-})->name('payment.method');
+})->middleware('auth')->name('payment.method');
 
 
 
 Route::post('/orders', [OrderController::class, 'store'])
-    ->middleware('auth')
     ->name('orders.store');

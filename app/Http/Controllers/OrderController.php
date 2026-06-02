@@ -13,35 +13,24 @@ class OrderController extends Controller
     {
         $request->validate([
             'payment_method' => 'required',
-            'address' => 'required',
-            'city' => 'required',
-            'postal_code' => 'required',
-            'cart' => 'required|array|min:1'
-        ]);
-
-        $cart = $request->cart;
-
-        $total = 0;
-
-        foreach ($cart as $item) {
-
-            $total +=
-                $item['precio']
-                * $item['cantidad'];
-        }
-
-        $request->validate([
-            'payment_method' => 'required',
 
             'address' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'postal_code' => 'required|string|max:20',
 
-            'cart' => 'required|array|min:1',
+            'cart' => 'required|string',
         ]);
+        $cart = json_decode($request->cart, true);
+        $total = 0;
+        foreach ($cart as $item) {
+            $total +=
+                $item['precio']
+                * $item['cantidad'];
+        }
+
 
         $order = Order::create([
-            'user_id' => auth()->user->id,
+            'user_id' => auth()->user()->id,
             'slug' => Str::uuid(),
 
             'total_amount' => $total,

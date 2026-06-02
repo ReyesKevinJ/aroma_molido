@@ -3,30 +3,30 @@
     @section('title', 'Método de Pago')
 
     @section('content')
-
-    <div class="max-w-4xl mx-auto p-8">
+    @if ($errors->any())
+    <div class="bg-red-100 text-red-700 p-4 rounded">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+    <form action="{{route('orders.store')}}" method="POST" class="max-w-4xl mx-auto p-8">
+        @csrf
         <div class="mt-8">
+            <input type="hidden" name="cart" id="cart-data">
 
             <h2 class="text-xl font-bold mb-4">
                 Datos de Envío
             </h2>
 
-            <input
-                id="address"
-                type="text"
-                placeholder="Dirección"
+            <input name="address" id="address" type="text" placeholder="Dirección"
                 class="w-full border p-2 mb-3 rounded">
 
-            <input
-                id="city"
-                type="text"
-                placeholder="Ciudad"
-                class="w-full border p-2 mb-3 rounded">
+            <input name="city" id="city" type="text" placeholder="Ciudad" class="w-full border p-2 mb-3 rounded">
 
-            <input
-                id="postal_code"
-                type="text"
-                placeholder="Código Postal"
+            <input name="postal_code" id="postal_code" type="text" placeholder="Código Postal"
                 class="w-full border p-2 mb-3 rounded">
 
         </div>
@@ -39,68 +39,49 @@
 
             <label class="flex items-center gap-3">
 
-                <input
-                    type="radio"
-                    name="payment"
-                    value="cash">
+                <input type="radio" name="payment_method" value="cash">
 
                 Efectivo
             </label>
 
             <label class="flex items-center gap-3">
 
-                <input
-                    type="radio"
-                    name="payment"
-                    value="credit_card">
+                <input type="radio" name="payment_method" value="credit_card">
 
                 Tarjeta Débito / Crédito
             </label>
 
         </div>
 
-        <div
-            id="card-form"
-            class="hidden mt-8 border rounded-xl p-5">
+        <div id="card-form" class="hidden mt-8 border rounded-xl p-5">
 
-            <input
-                type="text"
-                placeholder="Número de tarjeta"
-                class="w-full border p-2 mb-3">
+            <input name="number_card" type="text" placeholder="Número de tarjeta" class="w-full border p-2 mb-3">
 
-            <input
-                type="text"
-                placeholder="Titular"
-                class="w-full border p-2 mb-3">
+            <input name="titular" type="text" placeholder="Titular" class="w-full border p-2 mb-3">
 
             <div class="grid grid-cols-2 gap-3">
 
-                <input
-                    type="text"
-                    placeholder="MM/AA"
-                    class="border p-2">
+                <input name="expiry_date" type="text" placeholder="MM/AA" class="border p-2">
 
-                <input
-                    type="text"
-                    placeholder="CVV"
-                    class="border p-2">
+                <input name="cvv" type="text" placeholder="CVV" class="border p-2">
 
             </div>
 
         </div>
 
-        <button
-            onclick="confirmarCompra()"
-            class="bg-brand text-white my-5 px-5 py-3 rounded-xl">
+        <button type='submit' class="bg-brand text-white my-5 px-5 py-3 rounded-xl">
 
             Confirmar Compra
 
         </button>
 
-    </div>
+    </form>
 
 
     <script>
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        let dataInput = document.getElementById('cart-data');
+        dataInput.value = JSON.stringify(carrito);
         document.querySelectorAll('input[name="payment"]')
             .forEach(radio => {
 
@@ -166,6 +147,7 @@
             });
 
             const data = await response.json();
+            console.log(data);
 
             if (data.success) {
 
