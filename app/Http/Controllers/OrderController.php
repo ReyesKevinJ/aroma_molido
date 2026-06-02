@@ -41,7 +41,7 @@ class OrderController extends Controller
         ]);
 
         $order = Order::create([
-            'user_id' => auth()->id(),
+            'user_id' => auth()->user->id,
             'slug' => Str::uuid(),
 
             'total_amount' => $total,
