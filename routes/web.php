@@ -2,12 +2,12 @@
 
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [HomeController::class, 'index'])->name('welcome');
 Route::get('/contacto', function () {
     return view('contact');
 })->name('contact');
@@ -50,7 +50,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/metodo-pagos', function () {
     return view('payment-method');
 })->middleware('auth')->name('payment.method');
-
 
 
 Route::post('/orders', [OrderController::class, 'store'])

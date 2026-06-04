@@ -9,4 +9,10 @@ class Category extends Model
 {
     use SoftDeletes;
     protected $fillable = ['name', 'description', 'slug', 'parent_id'];
+
+    //relationships
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id');
+    }
 }

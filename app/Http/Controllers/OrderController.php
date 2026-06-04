@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class OrderController extends Controller
@@ -30,7 +31,7 @@ class OrderController extends Controller
 
 
         $order = Order::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => Auth::id(),
             'slug' => Str::uuid(),
 
             'total_amount' => $total,
