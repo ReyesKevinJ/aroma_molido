@@ -2,8 +2,17 @@
     @section('title','- Terminos y Condiciones')
     @section('content')
 
-    <section class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+    <section class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-auto lg:py-4">
+        @if ($errors->any())
+        <div class="bg-red-100 text-red-700 p-4 rounded">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 ">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1 class="text-xl font-bold leading-tight tracking-tight md:text-2xl ">
                     Crear una cuenta
@@ -15,6 +24,30 @@
                         <input type="email" name="email" id="email"
                             class=" border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
                             placeholder="name@company.com" required>
+                    </div>
+                    <div>
+                        <label for="name" class="block mb-2 text-sm font-medium ">Tu nombre</label>
+                        <input type="text" name="name" id="name"
+                            class=" border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                            placeholder="Juan" required>
+                    </div>
+                    <div>
+                        <label for="last_name" class="block mb-2 text-sm font-medium ">Tu apellido</label>
+                        <input type="text" name="last_name" id="last_name"
+                            class=" border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                            placeholder="Pérez" required>
+                    </div>
+                    <div>
+                        <label for="phone" class="block mb-2 text-sm font-medium ">Tu número de teléfono</label>
+                        <input type="text" name="phone" id="phone"
+                            class=" border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                            placeholder="34123456789" required>
+                    </div>
+                    <div>
+                        <label for="dni" class="block mb-2 text-sm font-medium ">Tu DNI</label>
+                        <input type="text" name="dni" id="dni"
+                            class=" border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                            placeholder="12345678" required>
                     </div>
                     <div class="relative">
                         <label for="password" class="block mb-2 text-sm font-medium">Contraseña</label>

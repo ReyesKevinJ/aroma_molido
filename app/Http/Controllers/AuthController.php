@@ -18,7 +18,10 @@ class AuthController extends Controller
     {
         // Validar los datos del formulario
         $request->validate([
-            // 'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'last_name' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:20',
+            'dni' => 'nullable|string|max:20|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
         ]);
@@ -27,6 +30,9 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name ?? $request->email, // Si no se proporciona un nombre, usar el email como nombre
             'email' => $request->email,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone,
+            'dni' => $request->dni,
             'password' => bcrypt($request->password),
         ]);
         // Iniciar sesión automáticamente después del registro

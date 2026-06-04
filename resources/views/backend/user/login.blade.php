@@ -4,6 +4,15 @@
     <section class="flex flex-col items-center justify-center px-6 py-8  mx-auto md:h-screen lg:py-0">
 
         <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+            @if ($errors->any())
+            <div class="bg-red-100 text-red-700 p-4 rounded">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1 class="text-xl font-bold leading-tight tracking-tight md:text-2xl ">
                     Iniciar sesión
@@ -63,17 +72,17 @@
             </div>
         </div>
         <script>
-            const togglePassword = document.querySelector('#togglePassword');
-            const password = document.querySelector('#password');
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
 
-            togglePassword.addEventListener('click', function(e) {
-                // toggle the type attribute
-                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-                password.setAttribute('type', type);
-                // toggle the eye slash icon
-                this.querySelector('#show').classList.toggle('hidden');
-                this.querySelector('#hide').classList.toggle('hidden');
-            });
+        togglePassword.addEventListener('click', function(e) {
+            // toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // toggle the eye slash icon
+            this.querySelector('#show').classList.toggle('hidden');
+            this.querySelector('#hide').classList.toggle('hidden');
+        });
         </script>
     </section>
     @endsection
