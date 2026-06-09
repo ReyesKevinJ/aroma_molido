@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\Weight;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -17,7 +19,9 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('admin.products.create');
+        $categories = Category::pluck('name', 'id');
+        $weights = Weight::pluck('name', 'id');
+        return view('admin.products.create', compact('categories', 'weights'));
     }
 
     public function store(Request $request)
