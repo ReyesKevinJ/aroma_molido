@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -27,7 +28,6 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'category_id' => 'required|exists:categories,id',
             'weight_id' => 'required|exists:weights,id',
-            'slug' => 'required|unique:products,slug',
             'is_available' => 'required|boolean',
             'stock' => 'required|integer|min:0',
             'images' => 'required|array|min:1',
@@ -36,11 +36,11 @@ class ProductController extends Controller
 
         $product = Product::create([
             'name' => $request->name,
+            'slug' => Str::slug($request->name),
             'description' => $request->description,
             'price' => $request->price,
             'category_id' => $request->category_id,
             'weight_id' => $request->weight_id,
-            'slug' => $request->slug,
             'is_available' => $request->is_available,
             'stock' => $request->stock
         ]);
