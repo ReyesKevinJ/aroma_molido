@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Query extends Model
 {
-
+    protected $table = 'query';
     protected $fillable = [
         'user_id',
         'subject',
         'message',
-        'state',
+        'status',
     ];
 
     //relationships

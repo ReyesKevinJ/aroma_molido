@@ -1,9 +1,10 @@
 <div>
-    <div class="bg-white border border-default-medium rounded-base shadow-md hover:shadow-lg hover:scale-105 transition duration-300 relative">
+    <div
+        class="bg-white border border-default-medium rounded-base shadow-md hover:shadow-lg hover:scale-105 transition duration-300 relative">
         <span class="absolute top-3 right-3 bg-brand px-2 rounded-full text-white text-sm">${{$price}}</span>
-        <img class="rounded-t-base" src="{{ $image }}" alt="{{ $title }} image">
+        <img class="rounded-t-base" src="{{ $image }}" alt="{{ $name }} image">
         <div class="p-5">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-heading">{{ $title }}</h5>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-heading">{{ $name }}</h5>
             <p class="mb-3 font-normal text-body">{{ $description }}</p>
             <div class="flex gap-2">
                 <button data-modal-target="default-modal-{{$id}}" data-modal-toggle="default-modal-{{$id}}"
@@ -16,15 +17,12 @@
                     ver mas
                 </button>
 
-                <button
-                    onclick='agregarAlCarrito(
+                <button onclick='agregarAlCarrito(
                         @json($id),
-                        @json($title),
+                        @json($name),
                         @json($price),
                         @json($image)
-                    )'
-
-                    class="bg-brand-soft rounded-xl px-4 py-2">
+                    )' class="bg-brand-soft rounded-xl px-4 py-2">
                     Comprar
                 </button>
             </div>
@@ -42,7 +40,7 @@
             <!-- Modal header -->
             <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
                 <h3 class="text-lg font-medium text-heading">
-                    {{ $title }}
+                    {{ $name }}
                 </h3>
                 <button type="button"
                     class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
@@ -65,15 +63,12 @@
             </div>
             <!-- Modal footer -->
             <div class="flex items-center border-t border-default space-x-4 pt-4 md:pt-5">
-                <button
-                    onclick='agregarAlCarrito(
+                <button onclick='agregarAlCarrito(
                         @json($id),
-                        @json($title),
+                        @json($name),
                         @json($price),
                         @json($image)
-                    )'
-
-                    class="bg-brand-soft rounded-xl px-4 py-2">
+                    )' class="bg-brand-soft rounded-xl px-4 py-2">
                     Comprar
                 </button>
 

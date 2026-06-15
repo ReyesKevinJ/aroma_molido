@@ -8,10 +8,27 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
-        $users = $users->toArray();
+        $query = User::query();
+
+        // 1. Filtro por búsqueda (Nombre o Email)
+        $query->when($request->filled('search'), function ($q) use ($request) {
+            $searchTerm = '%' . $request->search . '%';
+            $q->where(function ($subQuery) use ($searchTerm) {
+                $subQuery->where('name', 'like', $searchTerm)
+                    ->orWhere('email', 'like', $searchTerm);
+            });
+        });
+
+        // 2. Filtro por Rol (admin o customer)
+        $query->when($request->filled('role'), function ($q) use ($request) {
+            $q->where('role', $request->role);
+        });
+
+        // 3. Ejecutar y paginar
+        $users = $query->latest('id')->paginate(10)->withQueryString();
+
         return view('admin.users.index', compact('users'));
     }
 

@@ -14,7 +14,7 @@
     <div
         class="mx-auto max-w-screen-lg 2xl:max-w-screen-2xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 lg:gap-10 mt-10">
         @foreach ($products as $product )
-        <x-product-card :title="$product['title']" :id="$product['id']" :price="$product['price']"
+        <x-product-card :name="$product['name']" :id="$product['id']" :price="$product['price']"
             :description="$product['description']" :image="$product['image']" />
         @endforeach
     </div>

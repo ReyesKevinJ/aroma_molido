@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\admin\InboxController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
@@ -16,5 +17,5 @@ Route::resource('productos', ProductController::class)->names('products');
 Route::resource('imagenes', ImageController::class)->names('images');
 Route::resource('pedidos', OrderController::class)->names('orders');
 Route::resource('usuarios', UserController::class)->names('users');
-Route::get('/consultas', [AdminController::class, 'consultas'])->name('consultas');
+Route::resource('mensajes', InboxController::class)->names('inbox');
 Route::get('/', [AdminController::class, 'index'])->name('dashboard');
