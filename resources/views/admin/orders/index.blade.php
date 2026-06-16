@@ -49,7 +49,6 @@
                         </option>
                         <option value="processing" {{ request('status') == 'processing' ? 'selected' : '' }}>En Proceso
                         </option>
-                        <option value="shipped" {{ request('status') == 'shipped' ? 'selected' : '' }}>Enviado</option>
                         <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Completado
                         </option>
                         <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Cancelado
@@ -65,8 +64,6 @@
                         <option value="">Todos</option>
                         <option value="credit_card" {{ request('payment_method') == 'credit_card' ? 'selected' : '' }}>
                             Tarjeta de Crédito</option>
-                        <option value="paypal" {{ request('payment_method') == 'paypal' ? 'selected' : '' }}>PayPal
-                        </option>
                         <option value="bank_transfer"
                             {{ request('payment_method') == 'bank_transfer' ? 'selected' : '' }}>Transferencia</option>
                         <option value="cash" {{ request('payment_method') == 'cash' ? 'selected' : '' }}>Efectivo

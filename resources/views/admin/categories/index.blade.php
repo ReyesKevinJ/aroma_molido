@@ -65,6 +65,15 @@
                             <a href="{{ route('admin.categories.edit', ['categoria' => $category->id]) }}"
                                 class="font-medium text-blue-600 hover:text-blue-900">Editar</a>
 
+                            @if($category->trashed())
+                            <form action="{{ route('admin.categories.restore', $category['id']) }}" method="POST"
+                                style="display:inline;">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="text-green-500 hover:text-green-700">Restaurar</button>
+                            </form>
+                            @else
+
                             <form action="{{ route('admin.categories.destroy', ['categoria' => $category->id]) }}"
                                 method="POST" class="inline-block"
                                 onsubmit="return confirm('¿Estás seguro de eliminar esta categoría?');">
@@ -73,6 +82,7 @@
                                 <button type="submit"
                                     class="font-medium text-red-600 hover:text-red-900">Eliminar</button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                     @empty

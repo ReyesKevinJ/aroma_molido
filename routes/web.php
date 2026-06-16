@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -54,7 +55,8 @@ Route::get('/metodo-pagos', function () {
 
 Route::post('/orders', [OrderController::class, 'store'])
     ->name('orders.store');
-
+Route::post('/contact', [ContactController::class, 'store'])
+    ->name('contact.store');
 
 
 Route::middleware(['auth'])->group(function () {

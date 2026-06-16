@@ -73,12 +73,21 @@
                 <div class="flex justify-end space-x-2">
                     <a href="{{ route('admin.products.edit', $product['id']) }}"
                         class="text-blue-500 hover:text-blue-700">Editar</a>
+                    @if($product->trashed())
+                    <form action="{{ route('admin.products.restore', $product['id']) }}" method="POST"
+                        style="display:inline;">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="text-green-500 hover:text-green-700">Restaurar</button>
+                    </form>
+                    @else
                     <form action="{{ route('admin.products.destroy', $product['id']) }}" method="POST" class="inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="text-red-500 hover:text-red-700"
                             onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">Eliminar</button>
                     </form>
+                    @endif
                 </div>
             </div>
         </div>

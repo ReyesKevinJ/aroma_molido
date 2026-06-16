@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -53,7 +54,7 @@ class OrderController extends Controller
         $orders = $query->latest('id')->paginate(15)->withQueryString();
 
         // Obtenemos los usuarios para llenar el <select> de clientes
-        $users = \App\Models\User::select('id', 'name')->orderBy('name')->get();
+        $users = User::select('id', 'name')->orderBy('name')->get();
 
         return view('admin.orders.index', compact('orders', 'users'));
     }

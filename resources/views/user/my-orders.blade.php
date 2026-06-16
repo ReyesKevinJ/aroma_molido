@@ -8,6 +8,25 @@
                 Mis Pedidos
             </h2>
         </x-slot>
+        @if (session('success'))
+        <div id="success-alert" class="p-4 mb-4 text-sm text-fg-success-strong rounded-base bg-success-soft" role="alert">
+            <span class="font-medium">¡Pedido Exitoso!</span> Estamos preparando tu pedido.
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(() => {
+                    const alert = document.getElementById('success-alert');
+                    if (alert) {
+                        // 1. Bajamos la opacidad a 0 para que haga el efecto de desvanecimiento
+                        alert.style.opacity = '0';
+
+                        // 2. Lo eliminamos completamente del HTML después de 500ms (lo que dura la transición)
+                        setTimeout(() => alert.remove(), 500);
+                    }
+                }, 4000); // 4000 milisegundos = 4 segundos
+            });
+        </script>
+        @endif
 
         <div class=" py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

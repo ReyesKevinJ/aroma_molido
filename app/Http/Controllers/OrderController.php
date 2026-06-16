@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -49,21 +50,19 @@ class OrderController extends Controller
 
         foreach ($cart as $item) {
             // Buscar si el producto realmente existe en la DB
-            $producto_real = \App\Models\Product::find($item['id']);
+            $producto_real = Product::findOrFail($item['id']);
 
             if ($producto_real) {
                 OrderItem::create([
                     'order_id' => $order->id,
                     'product_id' => $producto_real->id,
                     'quantity' => $item['cantidad'],
-                    'price' => $producto_real->precio,
+                    'price' => $producto_real->price,
                 ]);
             }
         }
 
-        return response()->json([
-            'success' => true
-        ]);
+        return redirect()->route('user.my-orders')->with('success', true);
     }
 
     public function index()

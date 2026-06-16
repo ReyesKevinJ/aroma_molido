@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         // 1. Iniciamos la consulta
-        $query = Category::query();
+        $query = Category::withTrashed();
 
         // 2. Filtro por término de búsqueda (si el usuario escribió algo en el input 'search')
         $query->when($request->filled('search'), function ($q) use ($request) {
@@ -83,5 +83,12 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->delete();
         return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
+    }
+
+    public function restore(String $id)
+    {
+        $category = Category::withTrashed()->findOrFail($id);
+        $category->restore();
+        return redirect()->route('admin.categories.index')->with('success', 'Categoria restaurado exitosamente.');
     }
 }

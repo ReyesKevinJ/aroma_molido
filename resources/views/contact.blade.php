@@ -2,10 +2,36 @@
     @section('title','- Contacto')
     @section('content')
     <section class="h-full p-5 md:p-0 max-w-screen-lg m-auto my-10">
-        <div class="hidden p-4 mb-4 text-sm text-fg-success-strong rounded-base bg-success-soft" id="alert"
-            role="alert">
-            <span class="font-medium">Mensaje Enviado!</span> Tu mensaje/consulta fue enviada, te contactaremos
+        @if ($errors->any())
+        <div class="mb-4">
+            <div class="font-medium text-red-600">¡Ups! Algo salió mal.</div>
+            <ul class="mt-3 list-disc list-inside text-sm text-red-600">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
+        @endif
+
+        @if (session('success'))
+        <div id="success-alert" class="p-4 mb-4 text-sm text-fg-success-strong rounded-base bg-success-soft" role="alert">
+            <span class="font-medium">¡Mensaje Enviado!</span> Tu mensaje/consulta fue enviada, te contactaremos pronto.
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(() => {
+                    const alert = document.getElementById('success-alert');
+                    if (alert) {
+                        // 1. Bajamos la opacidad a 0 para que haga el efecto de desvanecimiento
+                        alert.style.opacity = '0';
+
+                        // 2. Lo eliminamos completamente del HTML después de 500ms (lo que dura la transición)
+                        setTimeout(() => alert.remove(), 500);
+                    }
+                }, 3000); // 4000 milisegundos = 4 segundos
+            });
+        </script>
+        @endif
         <div class="flex flex-col items-center justify-center">
             <h1 class="text-4xl font-bold mb-4 crimson-pro">Contactanos</h1>
             <p class="text-lg text-gray-600">No dudes en contactarnos para cualquier consulta o soporte. <a
@@ -14,7 +40,8 @@
                     frecuentes</a></p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-6">
-            <form id="login-form" class="w-full max-w-md" action="#">
+            <form class=" w-full max-w-md" action="{{route('contact.store')}}" method="POST">
+                @csrf
                 <div class="mb-4">
                     <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
                     <input type="text" id="name" name="name"
@@ -24,6 +51,17 @@
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                     <input type="email" id="email" name="email"
+                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand sm:text-sm"
+                        required>
+                </div>
+                <div class="mb-4">
+                    <label for="phone" class="block text-sm font-medium text-gray-700">Telefono(opcional)</label>
+                    <input type="tel" id="phone" name="phone"
+                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand sm:text-sm">
+                </div>
+                <div>
+                    <label for="subject" class="block text-sm font-medium text-gray-700">Asunto</label>
+                    <input type="text" id="subject" name="subject"
                         class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-brand focus:border-brand sm:text-sm"
                         required>
                 </div>
@@ -64,22 +102,6 @@
             </div>
         </div>
     </section>
-    <script>
-        const alert = document.getElementById('alert');
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            // 1. Detenemos el comportamiento por defecto (recargar/enviar)
-            event.preventDefault();
 
-            // 2. Mostramos el mensaje de éxito
-            console.log('Mensaje enviado');
-            alert.classList.remove('hidden');
-            setTimeout(() => {
-                alert.classList.add('hidden');
-                console.clear();
-            }, 3000);
-            // 3. (Opcional) Limpiamos el formulario para simular que se envió
-            this.reset();
-        });
-    </script>
     @endsection
 </x-layouts.app>
