@@ -4,8 +4,9 @@
 
     @section('content')
     @if ($errors->any())
-    <div class="bg-red-100 text-red-700 p-4 rounded">
-        <ul>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+        <strong class="font-bold">¡Corregí estos errores para continuar:</strong>
+        <ul class="mt-2 list-disc list-inside text-sm">
             @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
             @endforeach
@@ -46,7 +47,7 @@
 
             <label class="flex items-center gap-3">
 
-                <input type="radio" name="payment_method" value="credit_card">
+                <input type="radio" name="payment_method" value="card">
 
                 Tarjeta Débito / Crédito
             </label>
@@ -90,7 +91,7 @@
                     const cardForm =
                         document.getElementById('card-form');
 
-                    if (radio.value === 'credit_card') {
+                    if (radio.value === 'card') {
 
                         cardForm.classList.remove('hidden');
 

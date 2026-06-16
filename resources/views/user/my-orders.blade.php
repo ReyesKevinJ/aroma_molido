@@ -13,6 +13,13 @@
             <span class="font-medium">¡Pedido Exitoso!</span> Estamos preparando tu pedido.
         </div>
         <script>
+            document.addEventListener('DOMContentLoaded', function() {
+
+                localStorage.removeItem('carrito');
+                localStorage.removeItem('checkout');
+
+            });
+
             document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     const alert = document.getElementById('success-alert');
@@ -54,11 +61,13 @@
                                         <td class="py-4 px-6 text-sm text-gray-900">${{ number_format($pedido->total, 2) }}</td>
                                         <td class="py-4 px-6 text-sm">
                                             <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
-                                                {{ $pedido->estado }}
+                                                {{ $pedido->status }}
                                             </span>
                                         </td>
                                         <td class="py-4 px-6 text-sm">
-                                            <a href="#" class="text-blue-500 hover:text-blue-700 font-semibold">Ver Detalle</a>
+                                            <a href="{{ route('user.my-orders.show', $pedido->id) }}" class="text-blue-500 hover:text-blue-700 font-semibold">
+                                                Ver Detalle
+                                            </a>
                                         </td>
                                     </tr>
                                     @empty

@@ -178,6 +178,12 @@ window.irAPagar = function (){
         JSON.stringify(carrito)
     );
 
+    const formulario = document.querySelector('form');
+
+    if (formulario) {
+        formulario.submit(); // <-- Esto es lo que le falta a tu JS para avanzar
+    }
+
     window.location.href = '/metodo-pagos';
 }
 

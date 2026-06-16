@@ -54,7 +54,7 @@ Route::get('/metodo-pagos', function () {
 
 
 Route::post('/orders', [OrderController::class, 'store'])
-    ->name('orders.store');
+    ->name('orders.store')->middleware('auth');
 Route::post('/contact', [ContactController::class, 'store'])
     ->name('contact.store');
 
@@ -65,4 +65,7 @@ Route::middleware(['auth'])->group(function () {
     //perfil usuario
     Route::get('/perfil', [UserProfileController::class, 'edit'])->name('user.profile');
     Route::put('/perfil', [UserProfileController::class, 'update'])->name('user.profile.update');
+
+    //detalles de pedidos
+    Route::get('/mis-pedidos/{id}', [OrderController::class, 'show'])->name('user.my-orders.show');
 });
