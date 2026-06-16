@@ -222,11 +222,17 @@
                                 </li>
                                 <li>
                                     <a href="{{route('user.my-orders')}}"
-                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Mis Pedidos</a>
+                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Mis
+                                        Pedidos</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('logout')}}"
-                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Cerrar Sesion</a>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                            class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Cerrar
+                                            Sesion</button>
+                                    </form>
+
                                 </li>
                             </ul>
                         </div>
@@ -263,7 +269,8 @@
                     </li>
                     <li>
                         <a href="{{ route('user.my-orders') }}"
-                            class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Mis Pedidos
+                            class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Mis
+                            Pedidos
                         </a>
                     </li>
                     <li>

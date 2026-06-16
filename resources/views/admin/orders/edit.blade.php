@@ -100,7 +100,59 @@
                 </form>
             </div>
         </div>
+        <div class="lg:col-span-2 space-y-6">
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">Productos en esta Orden</h2>
 
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th scope="col" class="px-4 py-3">Producto</th>
+                                <th scope="col" class="px-4 py-3 text-center">Cantidad</th>
+                                <th scope="col" class="px-4 py-3 text-right">Precio Unitario</th>
+                                <th scope="col" class="px-4 py-3 text-right">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($order->items as $item)
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-4 py-3 font-medium text-gray-900">
+                                    {{ $item->product->name ?? 'Producto Eliminado' }}
+                                </td>
+                                <td class="px-4 py-3 text-center">
+                                    {{ $item->quantity }}
+                                </td>
+                                <td class="px-4 py-3 text-right">
+                                    {{ $item->priceFormat() }}
+                                </td>
+                                <td class="px-4 py-3 text-right font-medium text-gray-900">
+                                    ${{ number_format($item->price * $item->quantity, 2, ',', '.') }}
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="4" class="px-4 py-6 text-center text-gray-500">
+                                    No se encontraron productos para esta orden.
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                        <tfoot class="bg-gray-50 font-semibold text-gray-900">
+                            <tr>
+                                <td colspan="3" class="px-4 py-3 text-right">Costo de Envío:</td>
+                                <td class="px-4 py-3 text-right">{{ $order->shippingCostFormat() ?? '$0,00' }}</td>
+                            </tr>
+                            <tr class="border-t border-gray-200">
+                                <td colspan="3" class="px-4 py-3 text-right text-base">Total Pagado:</td>
+                                <td class="px-4 py-3 text-right text-base text-blue-600">
+                                    {{ $order->totalAmountFormat() }}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
     @endsection
