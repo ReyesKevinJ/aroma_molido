@@ -54,3 +54,9 @@ Route::get('/metodo-pagos', function () {
 
 Route::post('/orders', [OrderController::class, 'store'])
     ->name('orders.store');
+
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mis-pedidos', [OrderController::class, 'index'])->name('user.my-orders');
+});

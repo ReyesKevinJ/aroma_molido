@@ -48,17 +48,29 @@ class OrderController extends Controller
         ]);
 
         foreach ($cart as $item) {
+            // Buscar si el producto realmente existe en la DB
+            $producto_real = \App\Models\Product::find($item['id']);
 
-            OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $item['id'],
-                'quantity' => $item['cantidad'],
-                'price' => $item['precio']
-            ]);
+            if ($producto_real) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $producto_real->id,
+                    'quantity' => $item['cantidad'],
+                    'price' => $producto_real->precio,
+                ]);
+            }
         }
 
         return response()->json([
             'success' => true
         ]);
+    }
+
+    public function index()
+    {
+        // Asumiendo que tu modelo User tiene una relación 'orders'
+        $pedidos = Auth::user()->orders()->latest()->get();
+
+        return view('user.my-orders', compact('pedidos'));
     }
 }

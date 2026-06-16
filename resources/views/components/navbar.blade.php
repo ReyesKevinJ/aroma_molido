@@ -226,19 +226,19 @@
                     @endcan
                     <li>
                         <a href="#"
-                            class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Settings</a>
+                            class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Perfil</a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Earnings</a>
+                        <a href="{{ route('user.my-orders') }}"
+                            class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Mis Pedidos
+                        </a>
                     </li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button type="submit"
                                 class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">
-                                Sign
-                                out</button>
+                                Cerrar Sesión</button>
                         </form>
                     </li>
                 </ul>
