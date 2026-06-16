@@ -13,7 +13,7 @@
     </div>
     <div
         class="mx-auto max-w-screen-lg 2xl:max-w-screen-2xl bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6">
-        <form action="{{ route('admin.products.index') }}" method="GET" class="flex flex-col md:flex-row gap-4">
+        <form action="{{ route('products') }}" method="GET" class="flex flex-col md:flex-row gap-4">
 
             <div class="flex-1">
                 <label for="search" class="sr-only">Buscar producto</label>
