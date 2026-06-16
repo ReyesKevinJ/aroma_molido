@@ -109,13 +109,10 @@
         </nav>
 
         <aside id="top-bar-sidebar"
-            class="fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
+            class="fixed top-16 left-0 z-40 w-64 h-full transition-transform -translate-x-full sm:translate-x-0"
             aria-label="Sidebar">
             <div class="h-full px-3 py-4 overflow-y-auto bg-neutral-primary-soft border-e border-default">
-                <a href="https://flowbite.com/" class="flex items-center ps-2.5 mb-5">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 me-3" alt="Flowbite Logo" />
-                    <span class="self-center text-lg text-heading font-semibold whitespace-nowrap">Flowbite</span>
-                </a>
+
                 <ul class="space-y-2 font-medium">
                     <li>
                         <a href="{{ route('admin.dashboard') }}"
@@ -207,7 +204,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{route('logout')}}"
                             class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-fg-brand group">
                             <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-fg-brand"
                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -216,7 +213,7 @@
                                     stroke-width="2"
                                     d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2" />
                             </svg>
-                            <span class="flex-1 ms-3 whitespace-nowrap">Sign In</span>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
                         </a>
                     </li>
                 </ul>

@@ -129,10 +129,14 @@
                     </div>
 
                 </li>
-                <!-- <li class="md:hidden">
-                    <a href="/"
-                        class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Carrito</a>
-                </li> -->
+                <li class="flex justify-between md:hidden">
+                    <button data-modal-target="default-modal-cart" data-modal-toggle="default-modal-cart"
+                        class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Carrito</button>
+                    <span id="cart-count"
+                        class=" inline-flex items-center justify-center w-4.5 h-4.5 ms-2 text-xs font-medium text-fg-danger-strong bg-danger-soft border border-danger-subtle rounded-full">
+
+                    </span>
+                </li>
                 <li class="md:hidden">
                     <button id="dropdownNvbarButton1" data-dropdown-toggle="dropdownNavbar1"
                         class="hidden md:flex items-center justify-between w-full py-2 px-3 rounded font-medium text-heading md:w-auto hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0">
@@ -147,6 +151,7 @@
                     <div id="dropdownNavbar1"
                         class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-full md:w-44">
                         <ul class="p-2 text-sm text-body font-medium" aria-labelledby="dropdownNvbarButton1">
+                            @guest
                             <li>
                                 <a href="{{route('login')}}"
                                     class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Iniciar
@@ -156,7 +161,15 @@
                                 <a href="{{route('register')}}"
                                     class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Registrarse</a>
                             </li>
-                            <!-- <li>
+                            @endguest
+                            @can('admin')
+
+                            <li>
+                                <a href="#"
+                                    class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Dashboard</a>
+                            </li>
+                            @endcan
+                            <li>
                                 <a href="#"
                                     class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Earnings</a>
                             </li>
@@ -164,7 +177,7 @@
                                 <a href="#"
                                     class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Sign
                                     out</a>
-                            </li> -->
+                            </li>
                         </ul>
                     </div>
 
@@ -186,6 +199,7 @@
                         </h2>
                         <div id="accordion-arrow-1-body-1" class="hidden" aria-labelledby="accordion-arrow-1-heading-1">
                             <ul class="p-2 text-sm text-body ">
+                                @guest
                                 <li>
                                     <a href="{{route('login')}}"
                                         class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Iniciar
@@ -195,7 +209,25 @@
                                     <a href="{{route('register')}}"
                                         class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Registrarse</a>
                                 </li>
-
+                                @endguest
+                                @can('admin')
+                                <li>
+                                    <a href="{{route('admin.dashboard')}}"
+                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Dashboard</a>
+                                </li>
+                                @endcan
+                                <li>
+                                    <a href="{{route('user.profile')}}"
+                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Perfil</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('user.my-orders')}}"
+                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Mis Pedidos</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('logout')}}"
+                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Cerrar Sesion</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -214,6 +246,7 @@
                         d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 </svg>
             </button>
+
             <div id="dropdownNavbar"
                 class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44">
                 <ul class="p-2 text-sm text-body font-medium" aria-labelledby="dropdownNvbarButton">
@@ -252,15 +285,18 @@
                 class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Iniciar
                 Sesion</a>
             @endguest
-            <button class="" data-modal-target="default-modal-cart" data-modal-toggle="default-modal-cart">
+            <button class="relative" data-modal-target="default-modal-cart" data-modal-toggle="default-modal-cart">
 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                 </svg>
+                <span id="cart-count-1"
+                    class="absolute -top-2 -right-2 inline-flex items-center justify-center w-4.5 h-4.5 ms-2 text-xs font-medium text-fg-danger-strong bg-danger-soft border border-danger-subtle rounded-full">
+                    0
+                </span>
             </button>
-
         </div>
     </div>
 </nav>
