@@ -13,14 +13,10 @@
             <span class="font-medium">¡Pedido Exitoso!</span> Estamos preparando tu pedido.
         </div>
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-
-                localStorage.removeItem('carrito');
-                localStorage.removeItem('checkout');
-
-            });
-
             document.addEventListener('DOMContentLoaded', () => {
+                if (typeof window.vaciarCarritoCompletamente === 'function') {
+                    window.vaciarCarritoCompletamente();
+                }
                 setTimeout(() => {
                     const alert = document.getElementById('success-alert');
                     if (alert) {
