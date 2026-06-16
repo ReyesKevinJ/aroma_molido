@@ -67,5 +67,5 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/perfil', [UserProfileController::class, 'update'])->name('user.profile.update');
 
     //detalles de pedidos
-    Route::get('/mis-pedidos/{id}', [OrderController::class, 'show'])->name('user.my-orders.show');
+    Route::get('/mis-pedidos/{id}', [OrderController::class, 'show'])->name('user.account-details');
 });

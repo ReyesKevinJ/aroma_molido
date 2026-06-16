@@ -6,7 +6,7 @@
         <div class="container mx-auto p-4 mt-8 max-w-4xl">
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-2xl font-bold text-gray-800">Detalle del Pedido #{{ $pedido->id }}</h1>
-                <a href="{{ route('user.pedidos') }}" class="text-amber-700 hover:underline font-semibold">← Volver a mis pedidos</a>
+                <a href="{{ route('user.my-orders') }}" class="text-amber-700 hover:underline font-semibold">← Volver a mis pedidos</a>
             </div>
 
             <div class="bg-white shadow-md rounded-lg p-6 mb-6 border border-gray-100">
@@ -17,11 +17,11 @@
                     </div>
                     <div>
                         <p class="font-bold">Estado:</p>
-                        <span class="px-2.5 py-0.5 bg-amber-100 text-amber-800 rounded-full font-semibold text-xs">{{ $pedido->estado }}</span>
+                        <span class="px-2.5 py-0.5 bg-amber-100 text-amber-800 rounded-full font-semibold text-xs">{{ $pedido->status }}</span>
                     </div>
                     <div>
                         <p class="font-bold">Total Abonado:</p>
-                        <p class="text-lg font-bold text-gray-900">${{ number_format($pedido->total, 2) }}</p>
+                        <p class="text-lg font-bold text-gray-900">${{ number_format($pedido->total_amount, 2) }}</p>
                     </div>
                 </div>
 

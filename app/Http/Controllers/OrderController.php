@@ -22,8 +22,10 @@ class OrderController extends Controller
 
             'cart' => 'required|string',
         ]);
+
         $cart = json_decode($request->cart, true);
         $total = 0;
+
         foreach ($cart as $item) {
             $total +=
                 $item['precio']
@@ -38,7 +40,7 @@ class OrderController extends Controller
             'total_amount' => $total,
             'shipping_cost' => 0,
 
-            'status' => 'pending',
+            'status' => 'pendiente',
 
             'payment_method' => $request->payment_method,
             'payment_status' => 'unpaid',
@@ -71,5 +73,15 @@ class OrderController extends Controller
         $pedidos = Auth::user()->orders()->latest()->get();
 
         return view('user.my-orders', compact('pedidos'));
+    }
+
+    // Agrega esto dentro de tu OrderController.php
+    public function show($id)
+    {
+        // Buscamos el pedido por su ID cargando sus ítems y el producto asociado
+        $pedido = Order::with('items.product')->findOrFail($id);
+
+        // Retornamos la vista que creamos en el paso anterior
+        return view('user.account-details', compact('pedido'));
     }
 }
