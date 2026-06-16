@@ -9,9 +9,26 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all();
+        // 1. Iniciamos la consulta
+        $query = Category::query();
+
+        // 2. Filtro por término de búsqueda (si el usuario escribió algo en el input 'search')
+        $query->when($request->filled('search'), function ($q) use ($request) {
+            $searchTerm = '%' . $request->search . '%';
+
+            // Buscamos coincidencias en el nombre o en la descripción
+            $q->where('name', 'like', $searchTerm)
+                ->orWhere('description', 'like', $searchTerm);
+        });
+
+        // 3. Ejecutamos la consulta ordenando por los más recientes y paginando de a 10
+        $categories = $query->latest('id')
+            ->paginate(10)
+            ->withQueryString(); // Mantiene el término de búsqueda al cambiar de página
+
+        // 4. Retornamos la vista pasando la variable $categories
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -25,10 +42,12 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:categories,name',
+            'description' => 'nullable',
         ]);
 
         Category::create([
             'name' => $request->name,
+            'description' => $request->description,
             'slug' => Str::slug($request->name),
         ]);
 
@@ -47,10 +66,13 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $request->validate([
             'name' => 'required|unique:categories,name,' . $category->id,
+            'description' => 'nullable',
         ]);
 
         $category->update([
             'name' => $request->name,
+            'description' => $request->description,
+            'slug' => Str::slug($request->name),
         ]);
 
         return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');

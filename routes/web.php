@@ -4,6 +4,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,7 @@ Route::get('/terminos-y-condiciones', function () {
 Route::get('/nosotros', function () {
     return view('about');
 })->name('about');
-Route::get('/productos', function () {
-    return view('products');
-})->name('products');
+Route::get('/productos', [ProductController::class, 'index'])->name('products');
 Route::get('/pregunstas-frecuentes', function () {
     return view('faq');
 })->name('faq');

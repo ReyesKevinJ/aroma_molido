@@ -30,6 +30,6 @@
             </div>
         </div>
     </section>
-    <x-products :products="$products" />
+    <x-products :products="$products" :categories="$categories" />
     @endsection
 </x-layouts.app>

@@ -15,15 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Crear un usuario admin por defecto
-        User::create([
-            'name' => 'Admin',
-            'last_name' => 'User',
-            'phone' => '1234567890',
-            'dni' => '12345678',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('admin123'),
-            'role' => 'admin',
+        $this->call([
+            UserSeeder::class,
+            CategorySeeder::class,
+            WeightsSeeder::class,
+            ProductSeeder::class,
+            ImageSeeder::class,
+            InboxSeeder::class,
+            OrderSeeder::class,
+            OrderItemSeeder::class,
         ]);
     }
 }

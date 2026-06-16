@@ -12,12 +12,29 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
-        return view('admin.products.index', compact('products'));
-    }
+        $query = Product::query();
+        $query->when($request->filled('search'), function ($q) use ($request) {
+            $searchTerm = '%' . $request->search . '%';
+            $q->where(function ($subQuery) use ($searchTerm) {
+                $subQuery->where('name', 'like', $searchTerm)
+                    ->orWhere('description', 'like', $searchTerm);
+            });
+        });
 
+        $query->when($request->filled('category_id'), function ($q) use ($request) {
+            $q->where('category_id', $request->category_id);
+        });
+
+        $products = $query->with('category')
+            ->latest('id')
+            ->paginate(10)
+            ->withQueryString();
+        $categories = Category::select('id', 'name')->get();
+
+        return view('admin.products.index', compact('products', 'categories'));
+    }
     public function create()
     {
         $categories = Category::select('name', 'id')->get();
