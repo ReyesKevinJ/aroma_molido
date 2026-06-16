@@ -1,4 +1,4 @@
-<section class="p-5 md:p-0 my-8">
+<section class="min-h-screen p-5 md:p-0 max-w-screen-lg m-auto my-10">
     <div class="grid grid-rows-2 place-content-center">
         <h2>
             <span
@@ -6,7 +6,7 @@
                 Productos</span>
         </h2>
         <h3>
-            <span class="mt-3 text-lg text-body">Explore nuestro catalogo de productos de cafe premium, Elaborado a la
+            <span class="my-3 text-lg text-body">Explore nuestro catalogo de productos de cafe premium, Elaborado a la
                 perfección para
                 la mejor experiencia cafetera.</span>
         </h3>

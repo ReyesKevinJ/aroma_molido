@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\User\UserProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -58,4 +59,8 @@ Route::post('/orders', [OrderController::class, 'store'])
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/mis-pedidos', [OrderController::class, 'index'])->name('user.my-orders');
+
+    //perfil usuario
+    Route::get('/perfil', [UserProfileController::class, 'edit'])->name('user.profile');
+    Route::put('/perfil', [UserProfileController::class, 'update'])->name('user.profile.update');
 });

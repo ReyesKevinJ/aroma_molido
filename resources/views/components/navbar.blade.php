@@ -225,7 +225,7 @@
                     </li>
                     @endcan
                     <li>
-                        <a href="#"
+                        <a href="{{ route('user.profile') }}"
                             class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Perfil</a>
                     </li>
                     <li>
