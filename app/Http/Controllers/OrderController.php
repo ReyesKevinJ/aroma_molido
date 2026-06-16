@@ -40,7 +40,7 @@ class OrderController extends Controller
             'total_amount' => $total,
             'shipping_cost' => 0,
 
-            'status' => 'pendiente',
+            'status' => 'pending',
 
             'payment_method' => $request->payment_method,
             'payment_status' => 'unpaid',
