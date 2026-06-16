@@ -1,13 +1,17 @@
 <div>
     <div
         class="bg-white border border-default-medium rounded-base shadow-md hover:shadow-lg hover:scale-105 transition duration-300 relative">
-        <span class="absolute top-3 right-3 bg-brand px-2 rounded-full text-white text-sm">${{$price}}</span>
-        <img class="rounded-t-base" src="{{ $image }}" alt="{{ $name }} image">
+        <span
+            class="absolute top-3 right-3 bg-brand px-2 rounded-full text-white text-sm">{{$product->category->name}}</span>
+        <img class="rounded-t-base" src="/storage/{{ $product->images()->first()->url }}"
+            alt="{{ $product->name }} image">
         <div class="p-5">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-heading">{{ $name }}</h5>
-            <p class="mb-3 font-normal text-body">{{ $description }}</p>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-heading">{{ $product->name }}</h5>
+            <p class="mb-2 text-lg font-semibold text-heading">${{ $product->price }}</p>
+            <p class="mb-3 font-normal text-body">{{ $product->description }}</p>
             <div class="flex gap-2">
-                <button data-modal-target="default-modal-{{$id}}" data-modal-toggle="default-modal-{{$id}}"
+                <button data-modal-target="default-modal-{{$product->id}}"
+                    data-modal-toggle="default-modal-{{$product->id}}"
                     class="hover:bg-brand-soft border-1 transition duration-700 hover:border-0 rounded-xl w-full py-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6 inline-block">
@@ -18,10 +22,10 @@
                 </button>
 
                 <button onclick='agregarAlCarrito(
-                        @json($id),
-                        @json($name),
-                        @json($price),
-                        @json($image)
+                        @json($product->id),
+                        @json($product->name),
+                        @json($product->price),
+                        @json("/storage/" . $product->images()->first()->url)
                     )' class="bg-brand-soft rounded-xl px-4 py-2">
                     Comprar
                 </button>
@@ -32,7 +36,7 @@
 
 
 <!-- Main modal -->
-<div id="default-modal-{{$id}}" tabindex="-1" aria-hidden="true"
+<div id="default-modal-{{$product->id}}" tabindex="-1" aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-2xl max-h-full">
         <!-- Modal content -->
@@ -40,11 +44,11 @@
             <!-- Modal header -->
             <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
                 <h3 class="text-lg font-medium text-heading">
-                    {{ $name }}
+                    {{ $product->name }}
                 </h3>
                 <button type="button"
                     class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
-                    data-modal-hide="default-modal-{{$id}}">
+                    data-modal-hide="default-modal-{{$product->id}}">
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -55,24 +59,25 @@
             </div>
             <!-- Modal body -->
             <div class="space-y-4 md:space-y-6 py-4 md:py-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <img class="rounded-lg h-75 w-auto object-cover" src="{{$image}}" alt="">
+                <img class="rounded-lg h-75 w-auto object-cover" src="/storage/{{$product->images()->first()->url}}"
+                    alt="">
                 <div>
-                    <h3 class="text-2xl font-bold text-heading mb-2">${{$price}}</h3>
-                    <p class="text-body">{{ $description }}</p>
+                    <h3 class="text-2xl font-bold text-heading mb-2">${{$product->price}}</h3>
+                    <p class="text-body">{{ $product->description }}</p>
                 </div>
             </div>
             <!-- Modal footer -->
             <div class="flex items-center border-t border-default space-x-4 pt-4 md:pt-5">
                 <button onclick='agregarAlCarrito(
-                        @json($id),
-                        @json($name),
-                        @json($price),
-                        @json($image)
+                        @json($product->id),
+                        @json($product->name),
+                        @json($product->price),
+                        @json("/storage/".$product->images()->first()->url)
                     )' class="bg-brand-soft rounded-xl px-4 py-2">
                     Comprar
                 </button>
 
-                <button data-modal-hide="default-modal-{{$id}}" type="button"
+                <button data-modal-hide="default-modal-{{$product->id}}" type="button"
                     class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Seguir
                     Viendo</button>
             </div>

@@ -42,10 +42,12 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:categories,name',
+            'description' => 'nullable',
         ]);
 
         Category::create([
             'name' => $request->name,
+            'description' => $request->description,
             'slug' => Str::slug($request->name),
         ]);
 
@@ -64,10 +66,13 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $request->validate([
             'name' => 'required|unique:categories,name,' . $category->id,
+            'description' => 'nullable',
         ]);
 
         $category->update([
             'name' => $request->name,
+            'description' => $request->description,
+            'slug' => Str::slug($request->name),
         ]);
 
         return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
