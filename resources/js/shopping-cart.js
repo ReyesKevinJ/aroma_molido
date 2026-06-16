@@ -1,11 +1,20 @@
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
+function actualizarContador() {
+    let cartCount = carrito.length;
+    let contadorElement = document.getElementById('cart-count');
+let contadorElement1 = document.getElementById('cart-count-1');
+    if (contadorElement|| contadorElement1) {
+        contadorElement.innerText = cartCount;
+        contadorElement1.innerText = cartCount;
+    }
+}
 function guardarCarrito() {
 
     localStorage.setItem(
         'carrito',
         JSON.stringify(carrito)
     );
+    actualizarContador()
 }
 
 window.agregarAlCarrito = function(id, nombre, precio, imagen) {
@@ -181,7 +190,7 @@ window.irAPagar = function (){
     window.location.href = '/metodo-pagos';
 }
 
-document.addEventListener(
-    'DOMContentLoaded',
-    renderizarCarrito
-);
+document.addEventListener('DOMContentLoaded', () => {
+    renderizarCarrito();
+    actualizarContador();
+});
