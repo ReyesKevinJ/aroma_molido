@@ -16,7 +16,15 @@ function guardarCarrito() {
     );
     actualizarContador()
 }
+window.vaciarCarritoCompletamente = function() {
 
+    carrito = [];
+
+    localStorage.removeItem('carrito');
+    localStorage.removeItem('checkout');
+    actualizarContador();
+    renderizarCarrito();
+}
 window.agregarAlCarrito = function(id, nombre, precio, imagen) {
 
     id = Number(id);
