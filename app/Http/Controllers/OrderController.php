@@ -7,6 +7,7 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class OrderController extends Controller
@@ -15,68 +16,91 @@ class OrderController extends Controller
     {
         $request->validate([
             'payment_method' => 'required',
-
             'address' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'postal_code' => 'required|string|max:20',
-
             'cart' => 'required|string',
         ]);
 
         $cart = json_decode($request->cart, true);
-        $total = 0;
 
-        foreach ($cart as $item) {
-            $total +=
-                $item['precio']
-                * $item['cantidad'];
+        if (empty($cart)) {
+            return back()->withErrors(['error' => 'El carrito está vacío.']);
         }
 
-
-        $order = Order::create([
-            'user_id' => Auth::id(),
-            'slug' => Str::uuid(),
-
-            'total_amount' => $total,
-            'shipping_cost' => 0,
-
-            'status' => 'pending',
-
-            'payment_method' => $request->payment_method,
-            'payment_status' => 'unpaid',
-
-            'address' => $request->address,
-            'city' => $request->city,
-            'postal_code' => $request->postal_code,
-        ]);
+        $total = 0;
+        $productos_validados = [];
 
         foreach ($cart as $item) {
-            // Buscar si el producto realmente existe en la DB
-            $producto_real = Product::findOrFail($item['id']);
+            $producto_real = Product::find($item['id']);
 
-            if ($producto_real) {
-                OrderItem::create([
-                    'order_id' => $order->id,
-                    'product_id' => $producto_real->id,
-                    'quantity' => $item['cantidad'],
-                    'price' => $producto_real->price,
+            if (!$producto_real) {
+                return back()->withErrors(['error' => 'Uno de los productos del carrito ya no está disponible.']);
+            }
+
+            // Verificamos si hay stock suficiente
+            if ($producto_real->stock < $item['cantidad']) {
+                return back()->withErrors([
+                    'error' => "No hay stock suficiente para '{$producto_real->name}'. Quedan {$producto_real->stock} unidades disponibles."
                 ]);
             }
+            $total += $producto_real->price * $item['cantidad'];
+            $productos_validados[] = [
+                'producto' => $producto_real,
+                'cantidad' => $item['cantidad']
+            ];
         }
+        try {
+            DB::transaction(function () use ($request, $total, $productos_validados) {
 
-        return redirect()->route('user.my-orders')->with('success', true);
+                // A. Crear la orden cabecera
+                $order = Order::create([
+                    'user_id' => Auth::id(),
+                    'slug' => Str::uuid(),
+                    'total_amount' => $total,
+                    'shipping_cost' => 0,
+                    'status' => 'pending',
+                    'payment_method' => $request->payment_method,
+                    'payment_status' => 'unpaid',
+                    'address' => $request->address,
+                    'city' => $request->city,
+                    'postal_code' => $request->postal_code,
+                ]);
+
+                // B. Crear los items y descontar el stock
+                foreach ($productos_validados as $item_validado) {
+                    $producto = $item_validado['producto'];
+                    $cantidad = $item_validado['cantidad'];
+
+                    OrderItem::create([
+                        'order_id' => $order->id,
+                        'product_id' => $producto->id,
+                        'quantity' => $cantidad,
+                        'price' => $producto->price,
+                    ]);
+
+                    // Descontamos el stock de la base de datos
+                    $producto->decrement('stock', $cantidad);
+                }
+            });
+
+            // Si todo salió bien, redirigimos con éxito
+            return redirect()->route('user.my-orders')->with('success', true);
+        } catch (\Exception $e) {
+            // Si ocurre algún error a nivel de base de datos durante la transacción
+            return back()->withErrors(['error' => 'Ocurrió un problema al procesar tu pedido. Por favor, inténtalo de nuevo.']);
+        }
     }
 
     public function index()
     {
-        // Asumiendo que tu modelo User tiene una relación 'orders'
-        $pedidos = Auth::user()->orders()->latest()->get();
+        $pedidos = Order::where('user_id', Auth::id())->latest()->get();
 
         return view('user.my-orders', compact('pedidos'));
     }
 
     // Agrega esto dentro de tu OrderController.php
-    public function show($id)
+    public function show(String $id)
     {
         // Buscamos el pedido por su ID cargando sus ítems y el producto asociado
         $pedido = Order::with('items.product')->findOrFail($id);

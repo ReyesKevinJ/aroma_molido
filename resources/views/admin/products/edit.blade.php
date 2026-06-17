@@ -17,8 +17,18 @@
         <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-
-            <h5 class="text-xl font-semibold text-heading mb-6">Editar Producto: {{ $product->name }}</h5>
+            <div class="flex justify-between">
+                <h5 class="text-xl font-semibold text-heading mb-6">Editar Producto: {{ $product->name }}</h5>
+                <a href="{{ route('admin.products.index') }}"
+                    class="text-gray-600 hover:text-blue-600 flex items-center font-medium transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-5 h-5 mr-1">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+                    </svg>
+                    Volver al listado
+                </a>
+            </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
@@ -45,7 +55,8 @@
 
                 <div>
                     <label for="price" class="block mb-2.5 text-sm font-medium text-heading">Precio</label>
-                    <input type="number" min="1" name="price" id="price" value="{{ old('price', $product->price) }}"
+                    <input type="number" min="1.00" step="0.01" name="price" id="price"
+                        value="{{ old('price', $product->price) }}"
                         class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
                         placeholder="Precio del producto" required />
                 </div>
@@ -158,103 +169,103 @@
         </form>
 
         <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const dropzone = document.getElementById('dropzone');
-                const fileInput = document.getElementById('file-input');
-                const previewContainer = document.getElementById('preview-container');
+        document.addEventListener('DOMContentLoaded', () => {
+            const dropzone = document.getElementById('dropzone');
+            const fileInput = document.getElementById('file-input');
+            const previewContainer = document.getElementById('preview-container');
 
-                // --- LÓGICA PARA IMÁGENES EXISTENTES ---
-                const existingContainer = document.getElementById('existing-images-container');
-                const deletedInputsContainer = document.getElementById('deleted-images-inputs');
+            // --- LÓGICA PARA IMÁGENES EXISTENTES ---
+            const existingContainer = document.getElementById('existing-images-container');
+            const deletedInputsContainer = document.getElementById('deleted-images-inputs');
 
-                if (existingContainer) {
-                    existingContainer.addEventListener('click', (e) => {
-                        // Buscamos si se hizo clic en el botón de eliminar de una imagen existente
-                        const deleteBtn = e.target.closest('.delete-existing-btn');
+            if (existingContainer) {
+                existingContainer.addEventListener('click', (e) => {
+                    // Buscamos si se hizo clic en el botón de eliminar de una imagen existente
+                    const deleteBtn = e.target.closest('.delete-existing-btn');
 
-                        if (deleteBtn) {
-                            const imageId = deleteBtn.dataset.id;
-                            const imageCard = deleteBtn.closest('.existing-image-item');
+                    if (deleteBtn) {
+                        const imageId = deleteBtn.dataset.id;
+                        const imageCard = deleteBtn.closest('.existing-image-item');
 
-                            // 1. Ocultamos la imagen visualmente para dar feedback inmediato
-                            imageCard.style.display = 'none';
+                        // 1. Ocultamos la imagen visualmente para dar feedback inmediato
+                        imageCard.style.display = 'none';
 
-                            // 2. Creamos un input oculto con el ID de esta imagen
-                            const hiddenInput = document.createElement('input');
-                            hiddenInput.type = 'hidden';
-                            hiddenInput.name = 'deleted_images[]';
-                            hiddenInput.value = imageId;
+                        // 2. Creamos un input oculto con el ID de esta imagen
+                        const hiddenInput = document.createElement('input');
+                        hiddenInput.type = 'hidden';
+                        hiddenInput.name = 'deleted_images[]';
+                        hiddenInput.value = imageId;
 
-                            // 3. Lo inyectamos en el formulario para que viaje al hacer submit
-                            deletedInputsContainer.appendChild(hiddenInput);
-                        }
-                    });
-                }
+                        // 3. Lo inyectamos en el formulario para que viaje al hacer submit
+                        deletedInputsContainer.appendChild(hiddenInput);
+                    }
+                });
+            }
 
-                let uploadedFiles = [];
+            let uploadedFiles = [];
 
-                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                    dropzone.addEventListener(eventName, preventDefaults, false);
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropzone.addEventListener(eventName, () => {
+                    dropzone.classList.add('border-blue-500', 'bg-blue-50');
+                    dropzone.classList.remove('border-gray-300', 'bg-gray-50');
+                }, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, () => {
+                    dropzone.classList.remove('border-blue-500', 'bg-blue-50');
+                    dropzone.classList.add('border-gray-300', 'bg-gray-50');
+                }, false);
+            });
+
+            dropzone.addEventListener('drop', (e) => {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                handleFiles(files);
+            });
+
+            fileInput.addEventListener('change', function() {
+                handleFiles(this.files);
+            });
+
+            function handleFiles(files) {
+                const newFiles = Array.from(files).filter(file => file.type.startsWith('image/'));
+
+                newFiles.forEach(file => {
+                    uploadedFiles.push(file);
+                    previewFile(file);
                 });
 
-                function preventDefaults(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                }
+                syncInputFiles();
+            }
 
-                ['dragenter', 'dragover'].forEach(eventName => {
-                    dropzone.addEventListener(eventName, () => {
-                        dropzone.classList.add('border-blue-500', 'bg-blue-50');
-                        dropzone.classList.remove('border-gray-300', 'bg-gray-50');
-                    }, false);
+            function syncInputFiles() {
+                const dataTransfer = new DataTransfer();
+                uploadedFiles.forEach(file => {
+                    dataTransfer.items.add(file);
                 });
+                fileInput.files = dataTransfer.files;
+            }
 
-                ['dragleave', 'drop'].forEach(eventName => {
-                    dropzone.addEventListener(eventName, () => {
-                        dropzone.classList.remove('border-blue-500', 'bg-blue-50');
-                        dropzone.classList.add('border-gray-300', 'bg-gray-50');
-                    }, false);
-                });
+            function previewFile(file) {
+                const reader = new FileReader();
 
-                dropzone.addEventListener('drop', (e) => {
-                    const dt = e.dataTransfer;
-                    const files = dt.files;
-                    handleFiles(files);
-                });
+                reader.readAsDataURL(file);
+                reader.onloadend = function() {
+                    const div = document.createElement('div');
+                    div.className =
+                        'relative group rounded-lg overflow-hidden border border-gray-200 shadow-sm aspect-square bg-gray-100';
 
-                fileInput.addEventListener('change', function() {
-                    handleFiles(this.files);
-                });
-
-                function handleFiles(files) {
-                    const newFiles = Array.from(files).filter(file => file.type.startsWith('image/'));
-
-                    newFiles.forEach(file => {
-                        uploadedFiles.push(file);
-                        previewFile(file);
-                    });
-
-                    syncInputFiles();
-                }
-
-                function syncInputFiles() {
-                    const dataTransfer = new DataTransfer();
-                    uploadedFiles.forEach(file => {
-                        dataTransfer.items.add(file);
-                    });
-                    fileInput.files = dataTransfer.files;
-                }
-
-                function previewFile(file) {
-                    const reader = new FileReader();
-
-                    reader.readAsDataURL(file);
-                    reader.onloadend = function() {
-                        const div = document.createElement('div');
-                        div.className =
-                            'relative group rounded-lg overflow-hidden border border-gray-200 shadow-sm aspect-square bg-gray-100';
-
-                        div.innerHTML = `
+                    div.innerHTML = `
                     <img src="${reader.result}" class="w-full h-full object-cover" alt="Preview">
                     <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
                         <button type="button" class="delete-btn bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition-colors">
@@ -265,17 +276,17 @@
                     </div>
                 `;
 
-                        const deleteBtn = div.querySelector('.delete-btn');
-                        deleteBtn.addEventListener('click', () => {
-                            div.remove();
-                            uploadedFiles = uploadedFiles.filter(f => f !== file);
-                            syncInputFiles();
-                        });
+                    const deleteBtn = div.querySelector('.delete-btn');
+                    deleteBtn.addEventListener('click', () => {
+                        div.remove();
+                        uploadedFiles = uploadedFiles.filter(f => f !== file);
+                        syncInputFiles();
+                    });
 
-                        previewContainer.appendChild(div);
-                    }
+                    previewContainer.appendChild(div);
                 }
-            });
+            }
+        });
         </script>
     </div>
     @endsection

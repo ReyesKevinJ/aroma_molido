@@ -24,6 +24,7 @@ Route::get('/nosotros', function () {
     return view('about');
 })->name('about');
 Route::get('/productos', [ProductController::class, 'index'])->name('products');
+Route::post('/carrito/sincronizar', [ProductController::class, 'sync'])->name('cart.sync');
 Route::get('/pregunstas-frecuentes', function () {
     return view('faq');
 })->name('faq');

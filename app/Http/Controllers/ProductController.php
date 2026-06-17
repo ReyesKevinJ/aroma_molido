@@ -32,4 +32,19 @@ class ProductController extends Controller
 
         return view('products', compact('products', 'categories'));
     }
+    public function sync(Request $request)
+    {
+        // Recibimos un arreglo de IDs desde JavaScript
+        $ids = $request->input('ids', []);
+
+        if (empty($ids)) {
+            return response()->json([]);
+        }
+
+        // Buscamos solo esos productos y traemos los campos vitales
+        $products = Product::whereIn('id', $ids)->get(['id', 'name', 'price', 'stock']);
+
+        // Usamos keyBy('id') para que JavaScript pueda buscarlos fácilmente
+        return response()->json($products->keyBy('id'));
+    }
 }
