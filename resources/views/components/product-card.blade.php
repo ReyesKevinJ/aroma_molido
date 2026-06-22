@@ -2,20 +2,16 @@
     <div
         class="bg-white border border-default-medium rounded-base shadow-md hover:shadow-lg hover:scale-105 transition duration-300 relative h-full flex flex-col">
 
-        @if ($product->stock < 1)
-            <span class="absolute top-3 left-0 bg-red-500 px-2 rounded-full text-white text-sm">
+        @if ($product->stock < 1) <span class="absolute top-3 left-0 bg-red-500 px-2 rounded-full text-white text-sm">
             Sin Stock
             </span>
             @endif
 
-            <span
-                class="absolute top-3 right-3 bg-brand px-2 rounded-full text-white text-sm">
+            <span class="absolute top-3 right-3 bg-brand px-2 rounded-full text-white text-sm">
                 {{$product->category->name}}
             </span>
 
-            <img
-                class="rounded-t-base h-64 w-full object-cover"
-                src="/storage/{{ $product->images()->first()->url }}"
+            <img class="rounded-t-base h-64 w-full object-cover" src="/storage/{{ $product->images()->first()->url }}"
                 alt="{{ $product->name }} image">
 
             <div class="p-5 flex flex-col flex-1">
@@ -36,44 +32,34 @@
 
                 <div class="flex flex-col gap-2 mt-auto">
 
-                    <button
-                        data-modal-target="default-modal-{{$product->id}}"
+                    <button data-modal-target="default-modal-{{$product->id}}"
                         data-modal-toggle="default-modal-{{$product->id}}"
                         class="border border-gray-300 hover:bg-brand-soft transition duration-300 rounded-xl w-full py-2">
 
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="w-6 h-6 inline-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6 inline-block">
 
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                            <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178a1.012 1.012 0 010 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178zM15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
 
                         ver mas
                     </button>
 
+
+
+
+                    @if ($product->stock>1)
                     @guest
-                    <button
-                        data-modal-target="popup-modal-{{$product->id}}"
+                    <button data-modal-target="popup-modal-{{$product->id}}"
                         data-modal-toggle="popup-modal-{{$product->id}}"
                         class="flex items-center justify-center gap-2 text-white bg-brand hover:bg-brand-strong rounded-xl w-full py-2 transition duration-300"
                         type="button">
 
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="w-5 h-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-5 h-5">
 
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                            <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M2.25 3h1.386a1.5 1.5 0 011.455 1.132L5.836 7.5m0 0H18.75m-12.914 0L7.5 15.75A1.5 1.5 0 008.955 17h7.59a1.5 1.5 0 001.455-1.25L19.5 6H6.621m0 0L5.091 4.132A1.5 1.5 0 003.636 3H2.25m6.75 18a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25zm7.5 0a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z" />
                         </svg>
 
@@ -81,23 +67,19 @@
 
                     </button>
                     @endguest
-
-
                     @auth
-                    @if ($product->stock>1)
-
-                    <button
-                        onclick='agregarAlCarrito(
+                    <button onclick='agregarAlCarrito(
                         @json($product->id),
                         @json($product->name),
                         @json($product->price),
-                        @json("/storage/" . $product->images()->first()->url)
+                        @json("/storage/" . $product->images()->first()->url),
+                        @json($product->stock)
                         )' class="bg-brand-soft rounded-xl px-4 py-2">
-                        Comprar
+                        Agregar al carrito
                     </button>
 
-                    @endif
                     @endauth
+                    @endif
                 </div>
 
             </div>
@@ -260,10 +242,10 @@
                 </svg>
                 <h3 class="mb-6 text-body">Para Realizar una compra debe iniciar sesion, desea iniciar sesion?</h3>
                 <div class="flex items-center space-x-4 justify-center">
-                    <button data-modal-hide="popup-modal-{{$product->id}}" type="button"
+                    <a href="{{route('login')}}"
                         class="text-white bg-success box-border border border-transparent hover:bg-success-strong focus:ring-4 focus:ring-success-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
                         Iniciar Sesion
-                    </button>
+                    </a>
                     <button data-modal-hide="popup-modal-{{$product->id}}" type="button"
                         class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">No,Seguir
                         Viendo</button>
