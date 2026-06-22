@@ -36,14 +36,18 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                     <div>
                         <p class="text-gray-500 mb-1">Cliente</p>
-                        <p class="font-medium text-gray-900">{{ $order->user->name ?? 'Usuario Eliminado' }}</p>
+                        <p class="font-medium text-gray-900">{{ $order->user->name }} {{$order->user->last_name}}</p>
                     </div>
                     <div>
                         <p class="text-gray-500 mb-1">Correo Electrónico</p>
                         <p class="font-medium text-gray-900">{{ $order->user->email ?? 'N/A' }}</p>
                     </div>
                     <div>
-                        <p class="text-gray-500 mb-1">Fecha de Creación</p>
+                        <p class="text-gray-500 mb-1">Numero de Telefono</p>
+                        <p class="font-medium text-gray-900">{{ $order->user->phone ?? 'N/A' }}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 mb-1">Fecha de Pedido</p>
                         <p class="font-medium text-gray-900">{{ $order->created_at->format('d/m/Y H:i') }}</p>
                     </div>
                     <div>
@@ -51,6 +55,21 @@
                         <p class="font-medium text-gray-900 capitalize">
                             {{ str_replace('_', ' ', $order->payment_method) }}
                         </p>
+                    </div>
+                    <div class="col-span-full font-bold text-lg">
+                        Informacion de Envio
+                    </div>
+                    <div>
+                        <p class="text-gray-500 mb-1">Direccion</p>
+                        <p class="font-medium text-gray-900">{{ $order->address }}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 mb-1">Ciudad</p>
+                        <p class="font-medium text-gray-900">{{ $order->city }}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 mb-1">Codigo Postal</p>
+                        <p class="font-medium text-gray-900">{{ $order->postal_code }}</p>
                     </div>
                 </div>
             </div>
@@ -146,7 +165,8 @@
                             <tr class="border-t border-gray-200">
                                 <td colspan="3" class="px-4 py-3 text-right text-base">Total Pagado:</td>
                                 <td class="px-4 py-3 text-right text-base text-blue-600">
-                                    {{ $order->totalAmountFormat() }}</td>
+                                    {{ $order->totalAmountFormat() }}
+                                </td>
                             </tr>
                         </tfoot>
                     </table>

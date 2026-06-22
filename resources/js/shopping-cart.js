@@ -170,13 +170,9 @@ window.irAPagar = function (){
 
     localStorage.setItem('checkout', JSON.stringify(carrito));
 
-    // Si usas un formulario para ir a pagar (como en tu código), lo enviamos
-    const formulario = document.querySelector('form');
-    if (formulario) {
-        formulario.submit();
-    } else {
+
         window.location.href = '/metodo-pagos';
-    }
+
 }
 async function sincronizarCarritoConBD() {
     // Si no hay nada en el carrito, no hacemos peticiones a la base de datos

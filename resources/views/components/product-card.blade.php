@@ -24,6 +24,19 @@
                         </svg>
                         ver mas
                     </button>
+                    @if ($product->stock>1)
+                    @auth
+
+                    <button onclick='agregarAlCarrito(
+                        @json($product->id),
+                        @json($product->name),
+                        @json($product->price),
+                        @json("/storage/" . $product->images()->first()->url),
+                        @json($product->stock)
+                    )' class="bg-brand-soft rounded-xl px-4 py-2">
+                        Comprar
+                    </button>
+                    @endauth
                     @guest
                     <button data-modal-target="popup-modal-{{$product->id}}"
                         data-modal-toggle="popup-modal-{{$product->id}}"
@@ -32,19 +45,7 @@
                         Comprar
                     </button>
                     @endguest
-                    @auth
-                    @if ($product->stock>1)
-
-                    <button onclick='agregarAlCarrito(
-                        @json($product->id),
-                        @json($product->name),
-                        @json($product->price),
-                        @json("/storage/" . $product->images()->first()->url)
-                    )' class="bg-brand-soft rounded-xl px-4 py-2">
-                        Comprar
-                    </button>
                     @endif
-                    @endauth
                 </div>
             </div>
     </div>
@@ -206,10 +207,10 @@
                 </svg>
                 <h3 class="mb-6 text-body">Para Realizar una compra debe iniciar sesion, desea iniciar sesion?</h3>
                 <div class="flex items-center space-x-4 justify-center">
-                    <button data-modal-hide="popup-modal-{{$product->id}}" type="button"
+                    <a href="{{route('login')}}"
                         class="text-white bg-success box-border border border-transparent hover:bg-success-strong focus:ring-4 focus:ring-success-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
                         Iniciar Sesion
-                    </button>
+                    </a>
                     <button data-modal-hide="popup-modal-{{$product->id}}" type="button"
                         class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">No,Seguir
                         Viendo</button>
