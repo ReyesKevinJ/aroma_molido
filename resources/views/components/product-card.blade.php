@@ -83,8 +83,6 @@
                     @endguest
 
 
-
-
                     @auth
                     @if ($product->stock>1)
 
@@ -94,8 +92,7 @@
                         @json($product->name),
                         @json($product->price),
                         @json("/storage/" . $product->images()->first()->url)
-                    )'
-                        class="bg-brand-soft rounded-xl px-4 py-2">
+                        )' class="bg-brand-soft rounded-xl px-4 py-2">
                         Comprar
                     </button>
 
