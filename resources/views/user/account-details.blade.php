@@ -17,7 +17,22 @@
                     </div>
                     <div>
                         <p class="font-bold">Estado:</p>
-                        <span class="px-2.5 py-0.5 bg-amber-100 text-amber-800 rounded-full font-semibold text-xs">{{ $pedido->status }}</span>
+
+                        <span
+                            class="px-2.5 py-0.5 rounded-full font-semibold text-xs
+
+                            {{ $pedido->status == 'completado' ? 'bg-green-100 text-green-800' : '' }}
+
+                            {{ $pedido->status == 'pendiente' ? 'bg-yellow-100 text-yellow-800' : '' }}
+
+                            {{ $pedido->status == 'cancelado' ? 'bg-red-100 text-red-800' : '' }}
+
+                            {{ $pedido->status == 'procesando' ? 'bg-blue-100 text-blue-800' : '' }}
+
+                            {{ $pedido->status == 'enviado' ? 'bg-purple-100 text-purple-800' : '' }}
+                        ">
+                            {{ ucfirst($pedido->status) }}
+                        </span>
                     </div>
                     <div>
                         <p class="font-bold">Total Abonado:</p>

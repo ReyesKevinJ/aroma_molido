@@ -58,14 +58,14 @@
 
             <label class="flex items-center gap-3">
 
-                <input type="radio" name="payment_method" value="cash">
+                <input type="radio" name="payment_method" value="efectivo">
 
                 Efectivo
             </label>
 
             <label class="flex items-center gap-3">
 
-                <input type="radio" name="payment_method" value="card">
+                <input type="radio" name="payment_method" value="tarjeta">
 
                 Tarjeta Débito / Crédito
             </label>
@@ -98,85 +98,85 @@
 
 
     <script>
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    let dataInput = document.getElementById('cart-data');
-    dataInput.value = JSON.stringify(carrito);
-    document.querySelectorAll('input[name="payment"]')
-        .forEach(radio => {
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        let dataInput = document.getElementById('cart-data');
+        dataInput.value = JSON.stringify(carrito);
+        document.querySelectorAll('input[name="payment"]')
+            .forEach(radio => {
 
-            radio.addEventListener('change', () => {
+                radio.addEventListener('change', () => {
 
-                const cardForm =
-                    document.getElementById('card-form');
+                    const cardForm =
+                        document.getElementById('card-form');
 
-                if (radio.value === 'card') {
+                    if (radio.value === 'efectivo') {
 
-                    cardForm.classList.remove('hidden');
+                        cardForm.classList.remove('hidden');
 
-                } else {
+                    } else {
 
-                    cardForm.classList.add('hidden');
+                        cardForm.classList.add('hidden');
 
-                }
+                    }
+                });
+
             });
 
-        });
+        async function confirmarCompra() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const address =
+                document.getElementById('address').value;
 
-    async function confirmarCompra() {
-        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        const address =
-            document.getElementById('address').value;
+            const city =
+                document.getElementById('city').value;
 
-        const city =
-            document.getElementById('city').value;
+            const postalCode =
+                document.getElementById('postal_code').value;
 
-        const postalCode =
-            document.getElementById('postal_code').value;
+            const metodo =
+                document.querySelector(
+                    'input[name="payment"]:checked'
+                )?.value;
 
-        const metodo =
-            document.querySelector(
-                'input[name="payment"]:checked'
-            )?.value;
+            if (!metodo) {
 
-        if (!metodo) {
+                alert('Seleccione un método de pago');
 
-            alert('Seleccione un método de pago');
+                return;
+            }
 
-            return;
+            const response = await fetch('/orders', {
+                method: 'POST',
+
+                headers: {
+                    'Content-Type': 'application/json',
+
+                    'X-CSRF-TOKEN': document.querySelector(
+                        'meta[name="csrf-token"]'
+                    ).content
+                },
+
+                body: JSON.stringify({
+                    cart: carrito,
+                    address: address,
+                    city: city,
+                    postal_code: postalCode,
+                    payment_method: metodo
+                })
+            });
+
+            const data = await response.json();
+            console.log(data);
+
+            if (data.success) {
+
+                localStorage.removeItem('carrito');
+
+                alert('Pedido realizado correctamente');
+
+                window.location.href = '/metodo-pagos';
+            }
         }
-
-        const response = await fetch('/orders', {
-            method: 'POST',
-
-            headers: {
-                'Content-Type': 'application/json',
-
-                'X-CSRF-TOKEN': document.querySelector(
-                    'meta[name="csrf-token"]'
-                ).content
-            },
-
-            body: JSON.stringify({
-                cart: carrito,
-                address: address,
-                city: city,
-                postal_code: postalCode,
-                payment_method: metodo
-            })
-        });
-
-        const data = await response.json();
-        console.log(data);
-
-        if (data.success) {
-
-            localStorage.removeItem('carrito');
-
-            alert('Pedido realizado correctamente');
-
-            window.location.href = '/metodo-pagos';
-        }
-    }
     </script>
     @endsection
 </x-layouts.app>

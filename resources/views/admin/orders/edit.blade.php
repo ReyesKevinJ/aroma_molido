@@ -89,17 +89,17 @@
                             Orden</label>
                         <select name="status" id="status"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                            <option value="pending" {{ old('status', $order->status) == 'pending' ? 'selected' : '' }}>
+                            <option value="pendiente" {{ old('status', $order->status) == 'pendiente' ? 'selected' : '' }}>
                                 Pendiente</option>
-                            <option value="processing"
-                                {{ old('status', $order->status) == 'processing' ? 'selected' : '' }}>En Proceso
+                            <option value="procesando"
+                                {{ old('status', $order->status) == 'procesando' ? 'selected' : '' }}>En Proceso
                             </option>
-                            <option value="shipped" {{ old('status', $order->status) == 'shipped' ? 'selected' : '' }}>
+                            <option value="enviado" {{ old('status', $order->status) == 'enviado' ? 'selected' : '' }}>
                                 Enviado</option>
-                            <option value="completed"
-                                {{ old('status', $order->status) == 'completed' ? 'selected' : '' }}>Completado</option>
-                            <option value="cancelled"
-                                {{ old('status', $order->status) == 'cancelled' ? 'selected' : '' }}>Cancelado</option>
+                            <option value="completado"
+                                {{ old('status', $order->status) == 'completado' ? 'selected' : '' }}>Completado</option>
+                            <option value="cancelado"
+                                {{ old('status', $order->status) == 'cancelado' ? 'selected' : '' }}>Cancelado</option>
                         </select>
                     </div>
 

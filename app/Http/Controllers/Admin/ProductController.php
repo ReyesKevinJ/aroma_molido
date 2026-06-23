@@ -76,7 +76,7 @@ class ProductController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
+        return redirect()->route('admin.products.index')->with('success', 'Producto creado exitosamente.');
     }
 
     public function edit(String $id)
@@ -131,7 +131,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $product->delete();
-        return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
+        return redirect()->route('admin.products.index')->with('success', 'Producto eliminado exitosamente.');
     }
 
     public function restore(String $id)

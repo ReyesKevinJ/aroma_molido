@@ -27,9 +27,25 @@ class OrderSeeder extends Seeder
         }
 
         // ARREGLOS CORREGIDOS SEGÚN TU MIGRACIÓN
-        $statuses = ['pending', 'processing', 'completed', 'cancelled'];
-        $paymentMethods = ['credit_card', 'cash', 'bank_transfer'];
-        $paymentStatuses = ['unpaid', 'paid', 'failed', 'refunded'];
+        $statuses = [
+            'pendiente',
+            'procesando',
+            'completado',
+            'cancelado'
+        ];
+
+        $paymentMethods = [
+            'tarjeta',
+            'efectivo',
+            'transferencia'
+        ];
+
+        $paymentStatuses = [
+            'no_pagado',
+            'pagado',
+            'fallido',
+            'reembolsado'
+        ];
 
         // Vamos a generar 20 pedidos de prueba
         for ($i = 0; $i < 20; $i++) {
@@ -37,7 +53,7 @@ class OrderSeeder extends Seeder
             $status = $faker->randomElement($statuses);
 
             // Si el estado es completado, le asignamos una fecha de envío, sino null
-            $shippedAt = ($status === 'completed')
+            $shippedAt = ($status === 'completado')
                 ? $faker->dateTimeBetween('-1 month', 'now')
                 : null;
 

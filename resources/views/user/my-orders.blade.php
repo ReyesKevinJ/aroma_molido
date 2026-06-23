@@ -56,8 +56,15 @@
                                         <td class="py-4 px-6 text-sm text-gray-500">{{ $pedido->created_at->format('d/m/Y') }}</td>
                                         <td class="py-4 px-6 text-sm text-gray-900">${{ number_format($pedido->total_amount, 2) }}</td>
                                         <td class="py-4 px-6 text-sm">
-                                            <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
-                                                {{ $pedido->status }}
+                                            <span
+                                                class="px-2.5 py-1 text-xs font-medium rounded-full
+                                                {{ $pedido->status == 'completado' ? 'bg-green-100 text-green-800' : '' }}
+                                                {{ $pedido->status == 'pendiente' ? 'bg-yellow-100 text-yellow-800' : '' }}
+                                                {{ $pedido->status == 'cancelado' ? 'bg-red-100 text-red-800' : '' }}
+                                                {{ $pedido->status == 'procesando' ? 'bg-blue-100 text-blue-800' : '' }}">
+
+                                                {{ ucfirst($pedido->status) }}
+
                                             </span>
                                         </td>
                                         <td class="py-4 px-6 text-sm">

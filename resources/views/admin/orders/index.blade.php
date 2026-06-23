@@ -45,13 +45,13 @@
                     <select name="status" id="status"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         <option value="">Cualquier estado</option>
-                        <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pendiente
+                        <option value="pending" {{ request('status') == 'pendiente' ? 'selected' : '' }}>Pendiente
                         </option>
-                        <option value="processing" {{ request('status') == 'processing' ? 'selected' : '' }}>En Proceso
+                        <option value="processing" {{ request('status') == 'procesando' ? 'selected' : '' }}>En Proceso
                         </option>
-                        <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Completado
+                        <option value="completed" {{ request('status') == 'completado' ? 'selected' : '' }}>Completado
                         </option>
-                        <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Cancelado
+                        <option value="cancelled" {{ request('status') == 'cancelado' ? 'selected' : '' }}>Cancelado
                         </option>
                     </select>
                 </div>
@@ -62,11 +62,11 @@
                     <select name="payment_method" id="payment_method"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         <option value="">Todos</option>
-                        <option value="credit_card" {{ request('payment_method') == 'credit_card' ? 'selected' : '' }}>
+                        <option value="credit_card" {{ request('payment_method') == 'tarjeta' ? 'selected' : '' }}>
                             Tarjeta de Crédito</option>
                         <option value="bank_transfer"
-                            {{ request('payment_method') == 'bank_transfer' ? 'selected' : '' }}>Transferencia</option>
-                        <option value="cash" {{ request('payment_method') == 'cash' ? 'selected' : '' }}>Efectivo
+                            {{ request('payment_method') == 'transferencia' ? 'selected' : '' }}>Transferencia</option>
+                        <option value="cash" {{ request('payment_method') == 'efectivo' ? 'selected' : '' }}>Efectivo
                         </option>
                     </select>
                 </div>
@@ -131,10 +131,10 @@
                         <td class="px-6 py-4">
                             <span
                                 class="px-2.5 py-1 text-xs font-medium rounded-full
-                                {{ $order->status == 'completed' ? 'bg-green-100 text-green-800' : '' }}
-                                {{ $order->status == 'pending' ? 'bg-yellow-100 text-yellow-800' : '' }}
-                                {{ $order->status == 'cancelled' ? 'bg-red-100 text-red-800' : '' }}
-                                {{ !in_array($order->status, ['completed', 'pending', 'cancelled']) ? 'bg-blue-100 text-blue-800' : '' }}">
+                                {{ $order->status == 'completado' ? 'bg-green-100 text-green-800' : '' }}
+                                {{ $order->status == 'pendiente' ? 'bg-yellow-100 text-yellow-800' : '' }}
+                                {{ $order->status == 'cancelado' ? 'bg-red-100 text-red-800' : '' }}
+                                {{ !in_array($order->status, ['completado', 'pendiente', 'cancelado']) ? 'bg-blue-100 text-blue-800' : '' }}">
                                 {{ ucfirst($order->status) }}
                             </span>
                         </td>

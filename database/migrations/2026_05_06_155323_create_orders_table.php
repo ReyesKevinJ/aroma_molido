@@ -19,10 +19,25 @@ return new class extends Migration
             $table->decimal('total_amount', 10, 2)->default(0);
             $table->decimal('shipping_cost', 10, 2)->default(0);
 
-            $table->enum('status', ['pending', 'processing', 'completed', 'cancelled'])->default('pending');
+            $table->enum('status', [
+                'pendiente',
+                'procesando',
+                'completado',
+                'cancelado'
+            ])->default('pendiente');
 
-            $table->enum('payment_method', ['credit_card', 'cash', 'bank_transfer'])->default('credit_card');
-            $table->enum('payment_status', ['unpaid', 'paid', 'failed', 'refunded'])->default('unpaid');
+            $table->enum('payment_method', [
+                'tarjeta',
+                'efectivo',
+                'transferencia'
+            ])->default('tarjeta');
+
+            $table->enum('payment_status', [
+                'no pagado',
+                'pagado',
+                'fallido',
+                'reembolsado'
+            ])->default('no pagado');
 
             $table->timestamp('shipped_at')->nullable();
             $table->string('address');

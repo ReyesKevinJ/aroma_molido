@@ -51,7 +51,7 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name),
         ]);
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
+        return redirect()->route('admin.categories.index')->with('success', 'Categoria creada exitosamente.');
     }
 
     public function edit(String $id)
@@ -75,20 +75,20 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name),
         ]);
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
+        return redirect()->route('admin.categories.index')->with('success', 'Categoria actualizada exitosamente.');
     }
 
     public function destroy(String $id)
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
+        return redirect()->route('admin.categories.index')->with('success', 'Categoria eliminada exitosamente.');
     }
 
     public function restore(String $id)
     {
         $category = Category::withTrashed()->findOrFail($id);
         $category->restore();
-        return redirect()->route('admin.categories.index')->with('success', 'Categoria restaurado exitosamente.');
+        return redirect()->route('admin.categories.index')->with('success', 'Categoria restaurada exitosamente.');
     }
 }

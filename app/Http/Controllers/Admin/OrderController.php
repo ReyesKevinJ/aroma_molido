@@ -72,7 +72,7 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
         // 1. Validamos solo los campos que se pueden editar
         $request->validate([
-            'status' => 'required|string|in:pending,processing,shipped,completed,cancelled',
+            'status' => 'required|string|in:pendiente,procesando,enviado,completado,cancelado',
             'shipped_at' => 'nullable|date',
         ]);
 
