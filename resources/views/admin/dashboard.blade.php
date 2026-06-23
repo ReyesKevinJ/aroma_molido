@@ -97,14 +97,14 @@
                             <td class="px-5 py-3">{{ $order->user->name ?? 'Usuario Eliminado' }}</td>
                             <td class="px-5 py-3">
                                 <span class="px-2.5 py-1 text-[10px] font-bold rounded-full uppercase tracking-wider
-                                    {{ $order->status == 'completed' ? 'bg-green-100 text-green-800' : '' }}
-                                    {{ in_array($order->status, ['pending', 'processing']) ? 'bg-yellow-100 text-yellow-800' : '' }}
-                                    {{ $order->status == 'shipped' ? 'bg-blue-100 text-blue-800' : '' }}
-                                    {{ $order->status == 'cancelled' ? 'bg-red-100 text-red-800' : '' }}">
+                                    {{ $order->status == 'completado' ? 'bg-green-100 text-green-800' : '' }}
+                                    {{ in_array($order->status, ['pendiente', 'procesando']) ? 'bg-yellow-100 text-yellow-800' : '' }}
+                                    {{ $order->status == 'enviado' ? 'bg-blue-100 text-blue-800' : '' }}
+                                    {{ $order->status == 'cancelado' ? 'bg-red-100 text-red-800' : '' }}">
                                     {{ $order->status }}
                                 </span>
                             </td>
-                            <td class="px-5 py-3">{{ $order->created_at->diffForHumans() }}</td>
+                            <td class="px-5 py-3">{{ $order->created_at->locale('es')->diffForHumans() }}</td>
                         </tr>
                         @empty
                         <tr>

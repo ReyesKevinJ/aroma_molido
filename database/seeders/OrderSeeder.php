@@ -41,7 +41,7 @@ class OrderSeeder extends Seeder
         ];
 
         $paymentStatuses = [
-            'no_pagado',
+            'no pagado',
             'pagado',
             'fallido',
             'reembolsado'
