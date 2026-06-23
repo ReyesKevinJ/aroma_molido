@@ -18,11 +18,11 @@ class AdminController extends Controller
         // Pedidos del mes actual (puedes cambiar 'count()' por 'sum('total')' si tienes una columna de precio total)
         $salesThisMonth = Order::whereMonth('created_at', Carbon::now()->month)
             ->whereYear('created_at', Carbon::now()->year)
-            ->where('status', 'completed')
+            ->where('status', 'completado')
             ->count();
 
         // Pedidos que requieren atención inmediata
-        $pendingOrdersCount = Order::whereIn('status', ['pending', 'processing'])->count();
+        $pendingOrdersCount = Order::whereIn('status', ['pendiente', 'procesando'])->count();
 
         // 2. Tablas Inferiores
         // Últimos 5 pedidos

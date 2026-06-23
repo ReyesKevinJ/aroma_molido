@@ -79,7 +79,7 @@
                                     stroke-width="2"
                                     d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z" />
                             </svg>
-                            <span class="ms-3">Dashboard</span>
+                            <span class="ms-3">Panel</span>
                         </a>
                     </li>
                     <li>
@@ -168,7 +168,7 @@
                                         stroke-width="2"
                                         d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2" />
                                 </svg>
-                                <span class="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
+                                <span class="flex-1 ms-3 whitespace-nowrap">Cerrar Sesión</span>
                             </button>
                         </form>
 
