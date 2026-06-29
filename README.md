@@ -20,7 +20,7 @@ Proyecto desarrollado con **Laravel 12**
 
 # 📖 Descripción
 
-**Aroma Molido** es una aplicación web desarrollada con **Laravel 12**, diseñada para administrar una cafetería y su tienda online.
+**Aroma Molido** es una aplicación web desarrollada con **Laravel 12**, diseñada para administrar tienda online de Cafe.
 
 El sistema permite gestionar productos, pedidos, usuarios, categorías y demás funcionalidades necesarias para el funcionamiento del negocio.
 
@@ -32,7 +32,7 @@ El sistema permite gestionar productos, pedidos, usuarios, categorías y demás 
 |------------|---------|
 | Laravel | 12 |
 | PHP | 8.2 o superior |
-| MySQL / MariaDB | Compatible |
+| MySQL | Compatible |
 | Composer | Última versión |
 | Node.js | 18+ recomendado |
 | Vite | Incluido |
@@ -49,7 +49,7 @@ Antes de comenzar, asegúrese de tener instalado:
 - Composer
 - Node.js
 - npm
-- MySQL o MariaDB
+- MySQL 
 - Git
 
 Puede utilizar cualquiera de los siguientes entornos:
