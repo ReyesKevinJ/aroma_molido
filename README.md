@@ -65,7 +65,7 @@ Puede utilizar cualquiera de los siguientes entornos:
 ## 1. Clonar el repositorio
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone [<URL_DEL_REPOSITORIO>](https://github.com/ReyesKevinJ/aroma_molido.git)
 ```
 
 Ingresar a la carpeta del proyecto
