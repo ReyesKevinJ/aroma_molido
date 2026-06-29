@@ -1,7 +1,7 @@
 ````markdown
 # ☕ Aroma Molido
 
-<div align="center">
+<p align="center">
 
 ## Sistema de Gestión para Cafetería y Tienda Online
 
@@ -14,7 +14,7 @@ Proyecto desarrollado con **Laravel 12**
 👨‍💻 Ojeda Agustín  
 👨‍💻 Reyes Kevin
 
-</div>
+</p>
 
 ---
 
@@ -340,7 +340,7 @@ Este proyecto fue desarrollado con fines educativos y académicos.
 
 ---
 
-<div align="center">
+<p align="center">
 
 ## ☕ Aroma Molido
 
@@ -351,5 +351,5 @@ Desarrollado por
 
 Laravel 12 • 2026
 
-</div>
+</p>
 ````
