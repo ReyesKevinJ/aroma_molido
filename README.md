@@ -1,4 +1,4 @@
-````markdown
+
 # ☕ Aroma Molido
 
 <p align="center">
@@ -352,4 +352,3 @@ Desarrollado por
 Laravel 12 • 2026
 
 </p>
-````
